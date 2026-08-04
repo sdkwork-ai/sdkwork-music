@@ -57,16 +57,16 @@ export interface SunoMusicTrack {
   video_url?: string;
 }
 
-export interface ClawRouterSunoGenerationsClient {
+export interface CloudRouterSunoGenerationsClient {
   create(body: SunoMusicGenerationRequest): Promise<SunoMusicGenerationResponse>;
   retrieve(taskId: string): Promise<SunoMusicGenerationTaskResponse>;
 }
 
-export interface ClawRouterOpenSdkSunoPort {
+export interface CloudRouterOpenSdkSunoPort {
   audioSuno: {
     v1: {
       music: {
-        generations: ClawRouterSunoGenerationsClient;
+        generations: CloudRouterSunoGenerationsClient;
       };
     };
   };
@@ -115,7 +115,7 @@ export interface RetrieveSunoMusicGenerationInput {
 }
 
 export interface SunoMusicProviderFacadeDependencies {
-  clawRouter: ClawRouterOpenSdkSunoPort;
+  cloudRouter: CloudRouterOpenSdkSunoPort;
 }
 
 export interface MusicGenerationProviderAttemptDraft {
@@ -124,9 +124,9 @@ export interface MusicGenerationProviderAttemptDraft {
   providerCode: string;
   modelName: string;
   invocationMode: MusicAiProviderInvocationMode;
-  clawRouterEndpointKey: typeof SUNO_MUSIC_GENERATION_ENDPOINT.endpointKey;
-  clawRouterStandardPath: typeof SUNO_MUSIC_GENERATION_ENDPOINT.standardPath;
-  clawRouterOperationId: typeof SUNO_MUSIC_GENERATION_ENDPOINT.operationId;
+  cloudRouterEndpointKey: typeof SUNO_MUSIC_GENERATION_ENDPOINT.endpointKey;
+  cloudRouterStandardPath: typeof SUNO_MUSIC_GENERATION_ENDPOINT.standardPath;
+  cloudRouterOperationId: typeof SUNO_MUSIC_GENERATION_ENDPOINT.operationId;
   externalTaskId?: string;
   status: MusicAiGenerationTaskStatus;
   providerStatus: string;

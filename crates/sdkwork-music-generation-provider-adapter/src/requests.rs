@@ -1,4 +1,4 @@
-use clawrouter_open_sdk::SunoMusicGenerationRequest;
+use cloudrouter_open_sdk::SunoMusicGenerationRequest;
 use sdkwork_music_generation_provider_spi::{
     MusicGenerationCommand, MusicGenerationProviderError, MusicGenerationProviderResult,
 };

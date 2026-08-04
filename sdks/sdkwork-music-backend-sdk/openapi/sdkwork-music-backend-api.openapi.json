@@ -6635,15 +6635,15 @@
           "providerFamily",
           "capability",
           "invocationMode",
-          "clawRouterProviderCode",
-          "clawRouterEndpointKey",
-          "clawRouterStandardPath",
-          "clawRouterSdkFamily",
-          "clawRouterApiAuthority",
-          "clawRouterApiPrefix",
-          "clawRouterCreateOperationId",
-          "clawRouterRetrieveOperationId",
-          "clawRouterRetrieveStandardPath",
+          "cloudRouterProviderCode",
+          "cloudRouterEndpointKey",
+          "cloudRouterStandardPath",
+          "cloudRouterSdkFamily",
+          "cloudRouterApiAuthority",
+          "cloudRouterApiPrefix",
+          "cloudRouterCreateOperationId",
+          "cloudRouterRetrieveOperationId",
+          "cloudRouterRetrieveStandardPath",
           "supportsPolling",
           "supportsWebhook",
           "status"
@@ -6688,54 +6688,54 @@
           "invocationMode": {
             "$ref": "#/components/schemas/MusicAiProviderInvocationMode"
           },
-          "clawRouterProviderCode": {
+          "cloudRouterProviderCode": {
             "type": "string",
             "minLength": 1,
             "maxLength": 128
           },
-          "clawRouterEndpointKey": {
+          "cloudRouterEndpointKey": {
             "type": "string",
             "enum": [
               "suno.music.generations.create"
             ]
           },
-          "clawRouterStandardPath": {
+          "cloudRouterStandardPath": {
             "type": "string",
             "enum": [
               "/suno/v1/music/generations"
             ]
           },
-          "clawRouterSdkFamily": {
+          "cloudRouterSdkFamily": {
             "type": "string",
             "enum": [
-              "clawrouter-open-sdk"
+              "cloudrouter-open-sdk"
             ]
           },
-          "clawRouterApiAuthority": {
+          "cloudRouterApiAuthority": {
             "type": "string",
             "enum": [
-              "sdkwork-clawrouter.ai"
+              "sdkwork-cloudrouter.ai"
             ]
           },
-          "clawRouterApiPrefix": {
+          "cloudRouterApiPrefix": {
             "type": "string",
             "enum": [
               "/v1"
             ]
           },
-          "clawRouterCreateOperationId": {
+          "cloudRouterCreateOperationId": {
             "type": "string",
             "enum": [
               "sunoCreateMusicGeneration"
             ]
           },
-          "clawRouterRetrieveOperationId": {
+          "cloudRouterRetrieveOperationId": {
             "type": "string",
             "enum": [
               "sunoRetrieveMusicGeneration"
             ]
           },
-          "clawRouterRetrieveStandardPath": {
+          "cloudRouterRetrieveStandardPath": {
             "type": "string",
             "enum": [
               "/suno/v1/music/generations/{task_id}"
@@ -7090,9 +7090,9 @@
           "providerCode",
           "modelName",
           "invocationMode",
-          "clawRouterEndpointKey",
-          "clawRouterStandardPath",
-          "clawRouterOperationId",
+          "cloudRouterEndpointKey",
+          "cloudRouterStandardPath",
+          "cloudRouterOperationId",
           "status"
         ],
         "properties": {
@@ -7129,25 +7129,25 @@
           "invocationMode": {
             "$ref": "#/components/schemas/MusicAiProviderInvocationMode"
           },
-          "clawRouterEndpointKey": {
+          "cloudRouterEndpointKey": {
             "type": "string",
             "enum": [
               "suno.music.generations.create"
             ]
           },
-          "clawRouterStandardPath": {
+          "cloudRouterStandardPath": {
             "type": "string",
             "enum": [
               "/suno/v1/music/generations"
             ]
           },
-          "clawRouterOperationId": {
+          "cloudRouterOperationId": {
             "type": "string",
             "enum": [
               "sunoCreateMusicGeneration"
             ]
           },
-          "clawRouterRequestId": {
+          "cloudRouterRequestId": {
             "type": "string",
             "maxLength": 128
           },
@@ -8441,15 +8441,15 @@
           "providerFamily",
           "capability",
           "invocationMode",
-          "clawRouterProviderCode",
-          "clawRouterEndpointKey",
-          "clawRouterStandardPath",
-          "clawRouterSdkFamily",
-          "clawRouterApiAuthority",
-          "clawRouterApiPrefix",
-          "clawRouterCreateOperationId",
-          "clawRouterRetrieveOperationId",
-          "clawRouterRetrieveStandardPath",
+          "cloudRouterProviderCode",
+          "cloudRouterEndpointKey",
+          "cloudRouterStandardPath",
+          "cloudRouterSdkFamily",
+          "cloudRouterApiAuthority",
+          "cloudRouterApiPrefix",
+          "cloudRouterCreateOperationId",
+          "cloudRouterRetrieveOperationId",
+          "cloudRouterRetrieveStandardPath",
           "supportsPolling",
           "supportsWebhook",
           "status"
@@ -8484,54 +8484,54 @@
           "invocationMode": {
             "$ref": "#/components/schemas/MusicAiProviderInvocationMode"
           },
-          "clawRouterProviderCode": {
+          "cloudRouterProviderCode": {
             "type": "string",
             "minLength": 1,
             "maxLength": 128
           },
-          "clawRouterEndpointKey": {
+          "cloudRouterEndpointKey": {
             "type": "string",
             "enum": [
               "suno.music.generations.create"
             ]
           },
-          "clawRouterStandardPath": {
+          "cloudRouterStandardPath": {
             "type": "string",
             "enum": [
               "/suno/v1/music/generations"
             ]
           },
-          "clawRouterSdkFamily": {
+          "cloudRouterSdkFamily": {
             "type": "string",
             "enum": [
-              "clawrouter-open-sdk"
+              "cloudrouter-open-sdk"
             ]
           },
-          "clawRouterApiAuthority": {
+          "cloudRouterApiAuthority": {
             "type": "string",
             "enum": [
-              "sdkwork-clawrouter.ai"
+              "sdkwork-cloudrouter.ai"
             ]
           },
-          "clawRouterApiPrefix": {
+          "cloudRouterApiPrefix": {
             "type": "string",
             "enum": [
               "/v1"
             ]
           },
-          "clawRouterCreateOperationId": {
+          "cloudRouterCreateOperationId": {
             "type": "string",
             "enum": [
               "sunoCreateMusicGeneration"
             ]
           },
-          "clawRouterRetrieveOperationId": {
+          "cloudRouterRetrieveOperationId": {
             "type": "string",
             "enum": [
               "sunoRetrieveMusicGeneration"
             ]
           },
-          "clawRouterRetrieveStandardPath": {
+          "cloudRouterRetrieveStandardPath": {
             "type": "string",
             "enum": [
               "/suno/v1/music/generations/{task_id}"

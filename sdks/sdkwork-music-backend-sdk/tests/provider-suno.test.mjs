@@ -9,10 +9,10 @@ import {
   toSunoMusicGenerationRequest,
 } from "../composed/provider-suno.mjs";
 
-test("Suno provider facade submits music generation through injected claw-router SDK client", async () => {
+test("Suno provider facade submits music generation through injected cloud-router SDK client", async () => {
   const calls = [];
   const facade = createSunoMusicProviderFacade({
-    clawRouter: {
+    cloudRouter: {
       audioSuno: {
         v1: {
           music: {
@@ -73,9 +73,9 @@ test("Suno provider facade submits music generation through injected claw-router
     providerCode: "suno",
     modelName: "suno-v4",
     invocationMode: "async_task",
-    clawRouterEndpointKey: SUNO_MUSIC_GENERATION_ENDPOINT.endpointKey,
-    clawRouterStandardPath: SUNO_MUSIC_GENERATION_ENDPOINT.standardPath,
-    clawRouterOperationId: SUNO_MUSIC_GENERATION_ENDPOINT.operationId,
+    cloudRouterEndpointKey: SUNO_MUSIC_GENERATION_ENDPOINT.endpointKey,
+    cloudRouterStandardPath: SUNO_MUSIC_GENERATION_ENDPOINT.standardPath,
+    cloudRouterOperationId: SUNO_MUSIC_GENERATION_ENDPOINT.operationId,
     externalTaskId: "suno-task-1",
     status: "submitted",
     providerStatus: "submitted",
@@ -135,7 +135,7 @@ test("Suno provider facade forwards JSON provider options without overriding can
 
 test("Suno provider facade maps retrieve response into music sync, event, and artifact facts", async () => {
   const facade = createSunoMusicProviderFacade({
-    clawRouter: {
+    cloudRouter: {
       audioSuno: {
         v1: {
           music: {

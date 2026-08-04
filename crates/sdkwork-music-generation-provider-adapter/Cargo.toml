@@ -6,7 +6,7 @@ description = "Generated SDK adapter for SDKWork music generation."
 
 [dependencies]
 async-trait.workspace = true
-clawrouter-open-sdk.workspace = true
+cloudrouter-open-sdk.workspace = true
 sdkwork-music-generation-provider-spi.workspace = true
 serde.workspace = true
 serde_json.workspace = true

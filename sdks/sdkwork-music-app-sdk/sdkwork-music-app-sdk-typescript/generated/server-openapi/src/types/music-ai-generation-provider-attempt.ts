@@ -9,10 +9,10 @@ export interface MusicAiGenerationProviderAttempt {
   providerCode: string;
   modelName: string;
   invocationMode: MusicAiProviderInvocationMode;
-  clawRouterEndpointKey: 'suno.music.generations.create';
-  clawRouterStandardPath: '/suno/v1/music/generations';
-  clawRouterOperationId: 'sunoCreateMusicGeneration';
-  clawRouterRequestId?: string;
+  cloudRouterEndpointKey: 'suno.music.generations.create';
+  cloudRouterStandardPath: '/suno/v1/music/generations';
+  cloudRouterOperationId: 'sunoCreateMusicGeneration';
+  cloudRouterRequestId?: string;
   externalTaskId?: string;
   status: MusicAiGenerationTaskStatus;
   providerStatus?: string;

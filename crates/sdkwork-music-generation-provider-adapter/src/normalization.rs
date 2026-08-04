@@ -1,4 +1,4 @@
-use clawrouter_open_sdk::{
+use cloudrouter_open_sdk::{
     ProviderTaskError, SunoMusicGenerationResponse, SunoMusicGenerationTaskResponse,
 };
 use sdkwork_music_generation_provider_spi::{

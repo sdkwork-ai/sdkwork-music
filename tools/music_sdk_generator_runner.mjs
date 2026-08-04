@@ -21,26 +21,26 @@ const OFFICIAL_LANGUAGE_ORDER = [
 const DEFAULT_LANGUAGE = "typescript";
 const FIXED_SDK_VERSION = "0.1.0";
 const STANDARD_PROFILE = "sdkwork-v3";
-const MUSIC_CLAW_ROUTER_OPEN_SDK_DEPENDENCY = {
-  workspace: "clawrouter-open-sdk",
+const MUSIC_CLOUDROUTER_OPEN_SDK_DEPENDENCY = {
+  workspace: "cloudrouter-open-sdk",
   role: "ai-music-generation-provider-capability",
   required: true,
   dependencyMode: "consumer-sdk",
   apiPrefix: "/v1",
-  apiAuthority: "sdkwork-clawrouter.ai",
+  apiAuthority: "sdkwork-cloudrouter.ai",
   generatedTransportImportPolicy: "forbidden",
   operations: ["sunoCreateMusicGeneration", "sunoRetrieveMusicGeneration"],
   paths: ["/suno/v1/music/generations", "/suno/v1/music/generations/{task_id}"],
   packageByLanguage: {
-    typescript: "@sdkwork/clawrouter-open-sdk",
-    flutter: "clawrouter_open_sdk",
-    rust: "clawrouter-open-sdk",
-    java: "com.sdkwork.clawrouter:clawrouter-open-sdk",
-    csharp: "Sdkwork.ClawRouter.Open.Sdk",
-    swift: "ClawRouterOpenSdk",
-    kotlin: "com.sdkwork.clawrouter:clawrouter-open-sdk",
-    go: "github.com/sdkwork/clawrouter-open-sdk",
-    python: "sdkwork-clawrouter-open-sdk",
+    typescript: "@sdkwork/cloudrouter-open-sdk",
+    flutter: "cloudrouter_open_sdk",
+    rust: "cloudrouter-open-sdk",
+    java: "com.sdkwork.cloudrouter:cloudrouter-open-sdk",
+    csharp: "Sdkwork.CloudRouter.Open.Sdk",
+    swift: "CloudRouterOpenSdk",
+    kotlin: "com.sdkwork.cloudrouter:cloudrouter-open-sdk",
+    go: "github.com/sdkwork/cloudrouter-open-sdk",
+    python: "sdkwork-cloudrouter-open-sdk",
   },
 };
 
@@ -150,7 +150,7 @@ function standardProfileFor(family) {
 }
 
 function sdkDependenciesFor(family) {
-  return JSON.parse(JSON.stringify(family.sdkDependencies ?? [MUSIC_CLAW_ROUTER_OPEN_SDK_DEPENDENCY]));
+  return JSON.parse(JSON.stringify(family.sdkDependencies ?? [MUSIC_CLOUDROUTER_OPEN_SDK_DEPENDENCY]));
 }
 
 function writeSdkManifest({ family, inputPath, baseUrl, languages }) {

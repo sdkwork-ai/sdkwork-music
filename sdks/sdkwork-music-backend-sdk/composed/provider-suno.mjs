@@ -12,8 +12,8 @@ export const SUNO_MUSIC_GENERATION_RETRIEVE_ENDPOINT = Object.freeze({
   operationId: "sunoRetrieveMusicGeneration",
 });
 
-export function createSunoMusicProviderFacade({ clawRouter }) {
-  const generations = resolveSunoGenerationsClient(clawRouter);
+export function createSunoMusicProviderFacade({ cloudRouter }) {
+  const generations = resolveSunoGenerationsClient(cloudRouter);
 
   return {
     async submitGeneration(input) {
@@ -31,9 +31,9 @@ export function createSunoMusicProviderFacade({ clawRouter }) {
           providerCode: input.providerCode,
           modelName: input.command.modelName ?? input.command.providerModel,
           invocationMode: input.invocationMode,
-          clawRouterEndpointKey: SUNO_MUSIC_GENERATION_ENDPOINT.endpointKey,
-          clawRouterStandardPath: SUNO_MUSIC_GENERATION_ENDPOINT.standardPath,
-          clawRouterOperationId: SUNO_MUSIC_GENERATION_ENDPOINT.operationId,
+          cloudRouterEndpointKey: SUNO_MUSIC_GENERATION_ENDPOINT.endpointKey,
+          cloudRouterStandardPath: SUNO_MUSIC_GENERATION_ENDPOINT.standardPath,
+          cloudRouterOperationId: SUNO_MUSIC_GENERATION_ENDPOINT.operationId,
           externalTaskId,
           status: toMusicTaskStatus(providerStatus, "submitted"),
           providerStatus,
@@ -114,10 +114,10 @@ export function hashPayload(payload) {
   return `sha256:${createHash("sha256").update(stableJsonStringify(payload)).digest("hex")}`;
 }
 
-function resolveSunoGenerationsClient(clawRouter) {
-  const generations = clawRouter?.audioSuno?.v1?.music?.generations;
+function resolveSunoGenerationsClient(cloudRouter) {
+  const generations = cloudRouter?.audioSuno?.v1?.music?.generations;
   if (typeof generations?.create !== "function" || typeof generations?.retrieve !== "function") {
-    throw new Error("Suno provider facade requires clawRouter.audioSuno.v1.music.generations.");
+    throw new Error("Suno provider facade requires cloudRouter.audioSuno.v1.music.generations.");
   }
   return generations;
 }

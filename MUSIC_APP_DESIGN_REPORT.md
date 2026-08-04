@@ -172,7 +172,7 @@ sdkwork-music/
 ### 2.4 Integration Points
 
 - **Drive Integration**: Audio asset storage via SDKWork Drive
-- **ClawRouter**: AI music generation provider routing
+- **CloudRouter**: AI music generation provider routing
 - **AppBase IAM**: Authentication and authorization
 - **MediaResource**: Media asset management
 
@@ -263,7 +263,7 @@ Generated OpenAPI specifications are available at:
 │                                                              │
 │  ┌─────────────────────────────────────────────────┐        │
 │  │              SDK Dependencies                    │        │
-│  │  - clawrouter-open-sdk (AI generation)          │        │
+│  │  - cloudrouter-open-sdk (AI generation)          │        │
 │  │  - drive-sdk (file storage)                     │        │
 │  │  - iam-sdk (authentication)                     │        │
 │  └─────────────────────────────────────────────────┘        │
@@ -295,7 +295,7 @@ await adminClient.tracks.publish(trackId);
 {
   "sdkDependencies": [
     {
-      "workspace": "clawrouter-open-sdk",
+      "workspace": "cloudrouter-open-sdk",
       "role": "ai-music-generation-provider-capability",
       "operations": ["sunoCreateMusicGeneration", "sunoRetrieveMusicGeneration"]
     }
@@ -356,7 +356,7 @@ User Request → Style Selection → Provider Routing → Generation → Moderat
 #### 5.2.2 Provider Integration
 - **Multi-provider Support**: Suno, Udio, and extensible providers
 - **Invocation Modes**: Sync, Async, Webhook, Hybrid
-- **Provider Routing**: ClawRouter for intelligent routing
+- **Provider Routing**: CloudRouter for intelligent routing
 - **Status Normalization**: Unified status across providers
 
 #### 5.2.3 Credit System

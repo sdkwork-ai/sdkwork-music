@@ -13,14 +13,14 @@ const OWNER = "sdkwork-music";
 const DOMAIN = "music";
 const APP_ROUTE_CRATE = "sdkwork-routes-music-app-api";
 const BACKEND_ROUTE_CRATE = "sdkwork-routes-music-backend-api";
-const CLAW_ROUTER_OPEN_SDK_FAMILY = "clawrouter-open-sdk";
-const CLAW_ROUTER_API_AUTHORITY = "sdkwork-clawrouter.ai";
-const CLAW_ROUTER_API_PREFIX = "/v1";
-const CLAW_ROUTER_SUNO_CREATE_OPERATION_ID = "sunoCreateMusicGeneration";
-const CLAW_ROUTER_SUNO_RETRIEVE_OPERATION_ID = "sunoRetrieveMusicGeneration";
-const CLAW_ROUTER_SUNO_CREATE_ENDPOINT_KEY = "suno.music.generations.create";
-const CLAW_ROUTER_SUNO_CREATE_PATH = "/suno/v1/music/generations";
-const CLAW_ROUTER_SUNO_RETRIEVE_PATH = "/suno/v1/music/generations/{task_id}";
+const CLOUDROUTER_OPEN_SDK_FAMILY = "cloudrouter-open-sdk";
+const CLOUDROUTER_API_AUTHORITY = "sdkwork-cloudrouter.ai";
+const CLOUDROUTER_API_PREFIX = "/v1";
+const CLOUDROUTER_SUNO_CREATE_OPERATION_ID = "sunoCreateMusicGeneration";
+const CLOUDROUTER_SUNO_RETRIEVE_OPERATION_ID = "sunoRetrieveMusicGeneration";
+const CLOUDROUTER_SUNO_CREATE_ENDPOINT_KEY = "suno.music.generations.create";
+const CLOUDROUTER_SUNO_CREATE_PATH = "/suno/v1/music/generations";
+const CLOUDROUTER_SUNO_RETRIEVE_PATH = "/suno/v1/music/generations/{task_id}";
 
 const schemas = {
   MusicApiResult: objectSchema(["code", "message", "requestId", "data"], {
@@ -296,10 +296,10 @@ const schemas = {
       "providerFamily",
       "capability",
       "invocationMode",
-      "clawRouterProviderCode",
-      "clawRouterEndpointKey",
-      "clawRouterStandardPath",
-      ...clawRouterProviderBindingRequired(),
+      "cloudRouterProviderCode",
+      "cloudRouterEndpointKey",
+      "cloudRouterStandardPath",
+      ...cloudRouterProviderBindingRequired(),
       "supportsPolling",
       "supportsWebhook",
       "status",
@@ -312,7 +312,7 @@ const schemas = {
       providerFamily: stringSchema({ minLength: 1, maxLength: 64 }),
       capability: { type: "string", enum: ["text_to_music", "lyrics_to_music", "reference_to_music", "stem_generation", "arrangement", "voice_to_song"] },
       invocationMode: { $ref: "#/components/schemas/MusicAiProviderInvocationMode" },
-      ...clawRouterProviderBindingProperties(),
+      ...cloudRouterProviderBindingProperties(),
       supportsPolling: { type: "boolean" },
       supportsWebhook: { type: "boolean" },
       status: { type: "string", enum: ["draft", "active", "paused", "archived"] },
@@ -418,9 +418,9 @@ const schemas = {
       "providerCode",
       "modelName",
       "invocationMode",
-      "clawRouterEndpointKey",
-      "clawRouterStandardPath",
-      "clawRouterOperationId",
+      "cloudRouterEndpointKey",
+      "cloudRouterStandardPath",
+      "cloudRouterOperationId",
       "status",
     ],
     {
@@ -431,10 +431,10 @@ const schemas = {
       providerCode: stringSchema({ minLength: 1, maxLength: 64 }),
       modelName: stringSchema({ minLength: 1, maxLength: 128 }),
       invocationMode: { $ref: "#/components/schemas/MusicAiProviderInvocationMode" },
-      clawRouterEndpointKey: enumStringSchema(CLAW_ROUTER_SUNO_CREATE_ENDPOINT_KEY),
-      clawRouterStandardPath: enumStringSchema(CLAW_ROUTER_SUNO_CREATE_PATH),
-      clawRouterOperationId: enumStringSchema(CLAW_ROUTER_SUNO_CREATE_OPERATION_ID),
-      clawRouterRequestId: stringSchema({ maxLength: 128 }),
+      cloudRouterEndpointKey: enumStringSchema(CLOUDROUTER_SUNO_CREATE_ENDPOINT_KEY),
+      cloudRouterStandardPath: enumStringSchema(CLOUDROUTER_SUNO_CREATE_PATH),
+      cloudRouterOperationId: enumStringSchema(CLOUDROUTER_SUNO_CREATE_OPERATION_ID),
+      cloudRouterRequestId: stringSchema({ maxLength: 128 }),
       externalTaskId: stringSchema({ maxLength: 128 }),
       status: { $ref: "#/components/schemas/MusicAiGenerationTaskStatus" },
       providerStatus: stringSchema({ maxLength: 128 }),
@@ -687,10 +687,10 @@ const schemas = {
       "providerFamily",
       "capability",
       "invocationMode",
-      "clawRouterProviderCode",
-      "clawRouterEndpointKey",
-      "clawRouterStandardPath",
-      ...clawRouterProviderBindingRequired(),
+      "cloudRouterProviderCode",
+      "cloudRouterEndpointKey",
+      "cloudRouterStandardPath",
+      ...cloudRouterProviderBindingRequired(),
       "supportsPolling",
       "supportsWebhook",
       "status",
@@ -701,7 +701,7 @@ const schemas = {
       providerFamily: stringSchema({ minLength: 1, maxLength: 64 }),
       capability: { type: "string", enum: ["text_to_music", "lyrics_to_music", "reference_to_music", "stem_generation", "arrangement", "voice_to_song"] },
       invocationMode: { $ref: "#/components/schemas/MusicAiProviderInvocationMode" },
-      ...clawRouterProviderBindingProperties(),
+      ...cloudRouterProviderBindingProperties(),
       supportsPolling: { type: "boolean" },
       supportsWebhook: { type: "boolean" },
       status: { type: "string", enum: ["draft", "active", "paused", "archived"] },
@@ -938,28 +938,28 @@ function enumStringSchema(value) {
   return { type: "string", enum: [value] };
 }
 
-function clawRouterProviderBindingRequired() {
+function cloudRouterProviderBindingRequired() {
   return [
-    "clawRouterSdkFamily",
-    "clawRouterApiAuthority",
-    "clawRouterApiPrefix",
-    "clawRouterCreateOperationId",
-    "clawRouterRetrieveOperationId",
-    "clawRouterRetrieveStandardPath",
+    "cloudRouterSdkFamily",
+    "cloudRouterApiAuthority",
+    "cloudRouterApiPrefix",
+    "cloudRouterCreateOperationId",
+    "cloudRouterRetrieveOperationId",
+    "cloudRouterRetrieveStandardPath",
   ];
 }
 
-function clawRouterProviderBindingProperties() {
+function cloudRouterProviderBindingProperties() {
   return {
-    clawRouterProviderCode: stringSchema({ minLength: 1, maxLength: 128 }),
-    clawRouterEndpointKey: enumStringSchema(CLAW_ROUTER_SUNO_CREATE_ENDPOINT_KEY),
-    clawRouterStandardPath: enumStringSchema(CLAW_ROUTER_SUNO_CREATE_PATH),
-    clawRouterSdkFamily: enumStringSchema(CLAW_ROUTER_OPEN_SDK_FAMILY),
-    clawRouterApiAuthority: enumStringSchema(CLAW_ROUTER_API_AUTHORITY),
-    clawRouterApiPrefix: enumStringSchema(CLAW_ROUTER_API_PREFIX),
-    clawRouterCreateOperationId: enumStringSchema(CLAW_ROUTER_SUNO_CREATE_OPERATION_ID),
-    clawRouterRetrieveOperationId: enumStringSchema(CLAW_ROUTER_SUNO_RETRIEVE_OPERATION_ID),
-    clawRouterRetrieveStandardPath: enumStringSchema(CLAW_ROUTER_SUNO_RETRIEVE_PATH),
+    cloudRouterProviderCode: stringSchema({ minLength: 1, maxLength: 128 }),
+    cloudRouterEndpointKey: enumStringSchema(CLOUDROUTER_SUNO_CREATE_ENDPOINT_KEY),
+    cloudRouterStandardPath: enumStringSchema(CLOUDROUTER_SUNO_CREATE_PATH),
+    cloudRouterSdkFamily: enumStringSchema(CLOUDROUTER_OPEN_SDK_FAMILY),
+    cloudRouterApiAuthority: enumStringSchema(CLOUDROUTER_API_AUTHORITY),
+    cloudRouterApiPrefix: enumStringSchema(CLOUDROUTER_API_PREFIX),
+    cloudRouterCreateOperationId: enumStringSchema(CLOUDROUTER_SUNO_CREATE_OPERATION_ID),
+    cloudRouterRetrieveOperationId: enumStringSchema(CLOUDROUTER_SUNO_RETRIEVE_OPERATION_ID),
+    cloudRouterRetrieveStandardPath: enumStringSchema(CLOUDROUTER_SUNO_RETRIEVE_PATH),
   };
 }
 

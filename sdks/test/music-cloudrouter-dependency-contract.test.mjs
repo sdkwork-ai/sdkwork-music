@@ -6,26 +6,26 @@ import test from "node:test";
 const musicRoot = path.resolve(import.meta.dirname, "..", "..");
 const workspaceRoot = path.resolve(musicRoot, "..");
 
-const expectedClawRouterDependency = {
-  workspace: "clawrouter-open-sdk",
+const expectedCloudRouterDependency = {
+  workspace: "cloudrouter-open-sdk",
   role: "ai-music-generation-provider-capability",
   required: true,
   dependencyMode: "consumer-sdk",
   apiPrefix: "/v1",
-  apiAuthority: "sdkwork-clawrouter.ai",
+  apiAuthority: "sdkwork-cloudrouter.ai",
   generatedTransportImportPolicy: "forbidden",
   operations: ["sunoCreateMusicGeneration", "sunoRetrieveMusicGeneration"],
   paths: ["/suno/v1/music/generations", "/suno/v1/music/generations/{task_id}"],
   packageByLanguage: {
-    typescript: "@sdkwork/clawrouter-open-sdk",
-    flutter: "clawrouter_open_sdk",
-    rust: "clawrouter-open-sdk",
-    java: "com.sdkwork.clawrouter:clawrouter-open-sdk",
-    csharp: "Sdkwork.ClawRouter.Open.Sdk",
-    swift: "ClawRouterOpenSdk",
-    kotlin: "com.sdkwork.clawrouter:clawrouter-open-sdk",
-    go: "github.com/sdkwork/clawrouter-open-sdk",
-    python: "sdkwork-clawrouter-open-sdk",
+    typescript: "@sdkwork/cloudrouter-open-sdk",
+    flutter: "cloudrouter_open_sdk",
+    rust: "cloudrouter-open-sdk",
+    java: "com.sdkwork.cloudrouter:cloudrouter-open-sdk",
+    csharp: "Sdkwork.CloudRouter.Open.Sdk",
+    swift: "CloudRouterOpenSdk",
+    kotlin: "com.sdkwork.cloudrouter:cloudrouter-open-sdk",
+    go: "github.com/sdkwork/cloudrouter-open-sdk",
+    python: "sdkwork-cloudrouter-open-sdk",
   },
 };
 
@@ -53,18 +53,18 @@ function listFiles(root) {
   return result;
 }
 
-test("music SDK families declare clawrouter-open-sdk as the provider dependency contract", () => {
+test("music SDK families declare cloudrouter-open-sdk as the provider dependency contract", () => {
   for (const family of ["sdkwork-music-app-sdk", "sdkwork-music-backend-sdk"]) {
     const familyRoot = path.join("sdks", family);
     const assembly = readJson(musicRoot, path.join(familyRoot, "sdk-manifest.json"));
     const manifest = readJson(musicRoot, path.join(familyRoot, "sdk-manifest.json"));
     const componentSpec = readJson(musicRoot, path.join(familyRoot, "specs", "component.spec.json"));
 
-    assert.deepEqual(assembly.sdkDependencies, [expectedClawRouterDependency], `${family} assembly dependency`);
-    assert.deepEqual(manifest.sdkDependencies, [expectedClawRouterDependency], `${family} manifest dependency`);
+    assert.deepEqual(assembly.sdkDependencies, [expectedCloudRouterDependency], `${family} assembly dependency`);
+    assert.deepEqual(manifest.sdkDependencies, [expectedCloudRouterDependency], `${family} manifest dependency`);
     assert.deepEqual(
       componentSpec.contracts.sdkDependencies,
-      [expectedClawRouterDependency],
+      [expectedCloudRouterDependency],
       `${family} component dependency`,
     );
   }
@@ -84,56 +84,56 @@ test("music generated transports do not import dependency SDK packages directly"
     const directImports = listFiles(sourceRoot)
       .filter((absolute) => absolute.endsWith(".ts"))
       .filter((absolute) =>
-        /(?:from\s+["']@sdkwork\/clawrouter-open-sdk["']|import\(["']@sdkwork\/clawrouter-open-sdk["']\)|require\(["']@sdkwork\/clawrouter-open-sdk["']\))/.test(
+        /(?:from\s+["']@sdkwork\/cloudrouter-open-sdk["']|import\(["']@sdkwork\/cloudrouter-open-sdk["']\)|require\(["']@sdkwork\/cloudrouter-open-sdk["']\))/.test(
           readFileSync(absolute, "utf8"),
         ),
       )
       .map((absolute) => path.relative(musicRoot, absolute).replaceAll("\\", "/"));
 
-    assert.deepEqual(directImports, [], `${family} generated transport must consume claw-router through sdkDependencies`);
+    assert.deepEqual(directImports, [], `${family} generated transport must consume cloud-router through sdkDependencies`);
   }
 });
 
-test("music claw-router provider contract matches the current clawrouter-open-sdk Suno music operations", () => {
-  const clawRouterOpenapi = readJson(
+test("music cloud-router provider contract matches the current cloudrouter-open-sdk Suno music operations", () => {
+  const cloudRouterOpenapi = readJson(
     workspaceRoot,
-    path.join("sdkwork-clawrouter", "sdks", "clawrouter-open-sdk", "openapi", "clawrouter-open-sdk.openapi.json"),
+    path.join("sdkwork-cloudrouter", "sdks", "cloudrouter-open-sdk", "openapi", "cloudrouter-open-sdk.openapi.json"),
   );
 
   assert.equal(
-    clawRouterOpenapi.paths["/suno/v1/music/generations"].post.operationId,
+    cloudRouterOpenapi.paths["/suno/v1/music/generations"].post.operationId,
     "sunoCreateMusicGeneration",
   );
   assert.equal(
-    clawRouterOpenapi.paths["/suno/v1/music/generations/{task_id}"].get.operationId,
+    cloudRouterOpenapi.paths["/suno/v1/music/generations/{task_id}"].get.operationId,
     "sunoRetrieveMusicGeneration",
   );
   assert.deepEqual(
-    clawRouterOpenapi.components.schemas.SunoMusicGenerationRequest.additionalProperties.allOf,
+    cloudRouterOpenapi.components.schemas.SunoMusicGenerationRequest.additionalProperties.allOf,
     [{ $ref: "#/components/schemas/ProviderJsonValue" }],
   );
 });
 
-test("music Suno facade consumes the current clawrouter TypeScript SDK resource surface", () => {
-  const clawRouterSdk = readFileSync(
+test("music Suno facade consumes the current cloudrouter TypeScript SDK resource surface", () => {
+  const cloudRouterSdk = readFileSync(
     path.join(
       workspaceRoot,
-      "sdkwork-clawrouter",
+      "sdkwork-cloudrouter",
       "sdks",
-      "clawrouter-open-sdk",
-      "clawrouter-open-sdk-typescript",
+      "cloudrouter-open-sdk",
+      "cloudrouter-open-sdk-typescript",
       "src",
       "sdk.ts",
     ),
     "utf8",
   );
-  const clawRouterAudioSunoApi = readFileSync(
+  const cloudRouterAudioSunoApi = readFileSync(
     path.join(
       workspaceRoot,
-      "sdkwork-clawrouter",
+      "sdkwork-cloudrouter",
       "sdks",
-      "clawrouter-open-sdk",
-      "clawrouter-open-sdk-typescript",
+      "cloudrouter-open-sdk",
+      "cloudrouter-open-sdk-typescript",
       "src",
       "api",
       "audio-suno.ts",
@@ -149,12 +149,12 @@ test("music Suno facade consumes the current clawrouter TypeScript SDK resource 
     "utf8",
   );
 
-  assert.match(clawRouterSdk, /public readonly audioSuno: AudioSunoApi;/);
-  assert.match(clawRouterAudioSunoApi, /export class AudioSunoV1MusicGenerationsApi/);
-  assert.match(clawRouterAudioSunoApi, /async create\(body: SunoMusicGenerationRequest\)/);
-  assert.match(clawRouterAudioSunoApi, /async retrieve\(taskId: string\)/);
-  assert.match(musicSunoFacade, /clawRouter\?\.audioSuno\?\.v1\?\.music\?\.generations/);
-  assert.match(musicSunoFacadeTypes, /audioSuno:\s*\{\s*v1:\s*\{\s*music:\s*\{\s*generations: ClawRouterSunoGenerationsClient;/);
+  assert.match(cloudRouterSdk, /public readonly audioSuno: AudioSunoApi;/);
+  assert.match(cloudRouterAudioSunoApi, /export class AudioSunoV1MusicGenerationsApi/);
+  assert.match(cloudRouterAudioSunoApi, /async create\(body: SunoMusicGenerationRequest\)/);
+  assert.match(cloudRouterAudioSunoApi, /async retrieve\(taskId: string\)/);
+  assert.match(musicSunoFacade, /cloudRouter\?\.audioSuno\?\.v1\?\.music\?\.generations/);
+  assert.match(musicSunoFacadeTypes, /audioSuno:\s*\{\s*v1:\s*\{\s*music:\s*\{\s*generations: CloudRouterSunoGenerationsClient;/);
   assert.match(musicSunoFacadeTypes, /export type ProviderJsonValue/);
   assert.match(musicSunoFacadeTypes, /\[key: string\]: ProviderJsonValue \| undefined;/);
 });

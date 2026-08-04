@@ -177,7 +177,7 @@ fn music_storage_manifest_declares_complete_music_tables_and_migrations() {
     assert!(manifest.migration_plan[0]
         .sql
         .contains("adapter_id TEXT NOT NULL"));
-    assert!(!manifest.migration_plan[0].sql.contains("claw_router_"));
+    assert!(!manifest.migration_plan[0].sql.contains("cloud_router_"));
     assert!(manifest.migration_plan[0]
         .sql
         .contains("CREATE TABLE music_ai_generation_provider_event"));
@@ -1069,7 +1069,7 @@ async fn generated_artifact_archive_uses_drive_ai_space_and_completes_audio_vari
             prompt: "generate cover image and preview music for summer campaign".to_owned(),
             lyrics_prompt: None,
             style_tags: vec!["pop".to_owned(), "bright".to_owned()],
-            model_provider: "sdkwork-clawrouter".to_owned(),
+            model_provider: "sdkwork-cloudrouter".to_owned(),
             model_name: "multi-modal-music-v1".to_owned(),
             reference_drive_uri: None,
             now: "2026-06-06T03:01:00Z".to_owned(),
