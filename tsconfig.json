@@ -1,10 +1,12 @@
 {
   "extends": "./tsconfig.base.json",
   "include": [
-    "packages/**/*.ts",
-    "packages/**/*.tsx",
-    "tests/**/*.mjs",
-    "sdks/test/**/*.mjs"
-  ]
+    "apps/**/*.ts",
+    "apps/**/*.tsx",
+    "scripts/**/*.ts"
+  ],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true
+  }
 }
-

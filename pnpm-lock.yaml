@@ -191,6 +191,9 @@ importers:
       '@sdkwork/drive-app-sdk':
         specifier: workspace:*
         version: link:../../../../../sdkwork-drive/sdks/sdkwork-drive-app-sdk/sdkwork-drive-app-sdk-typescript
+      '@sdkwork/generations-pc-workspace':
+        specifier: workspace:*
+        version: link:../../../../../sdkwork-generations/apps/sdkwork-generations-pc/packages/sdkwork-generations-pc-workspace
       '@sdkwork/utils':
         specifier: workspace:*
         version: link:../../../../../sdkwork-utils/packages/sdkwork-utils-typescript
@@ -291,13 +294,13 @@ importers:
         specifier: 'catalog:'
         version: 1.7.0(react@19.2.4)
       react:
-        specifier: '>=18.2.0 <20.0.0'
+        specifier: 'catalog:'
         version: 19.2.4
       react-dom:
         specifier: '>=18.2.0 <20.0.0'
         version: 19.2.4(react@19.2.4)
       react-i18next:
-        specifier: '>=14.0.0'
+        specifier: 'catalog:'
         version: 17.0.10(i18next@26.3.6(typescript@6.0.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@6.0.3)
     devDependencies:
       '@types/react':
@@ -374,7 +377,7 @@ importers:
         specifier: 'catalog:'
         version: 1.7.0(react@19.2.4)
       react:
-        specifier: '>=18.2.0 <20.0.0'
+        specifier: 'catalog:'
         version: 19.2.4
       react-dom:
         specifier: '>=18.2.0 <20.0.0'
@@ -423,7 +426,7 @@ importers:
         specifier: 'catalog:'
         version: 1.7.0(react@19.2.4)
       react:
-        specifier: '>=18.2.0 <20.0.0'
+        specifier: 'catalog:'
         version: 19.2.4
       react-dom:
         specifier: '>=18.2.0 <20.0.0'
@@ -738,7 +741,7 @@ importers:
         specifier: 'catalog:'
         version: 1.7.0(react@19.2.4)
       react:
-        specifier: '>=18.2.0 <20.0.0'
+        specifier: 'catalog:'
         version: 19.2.4
       react-dom:
         specifier: '>=18.2.0 <20.0.0'
@@ -752,6 +755,9 @@ importers:
       lucide-react:
         specifier: 'catalog:'
         version: 1.7.0(react@19.2.4)
+      react:
+        specifier: 'catalog:'
+        version: 19.2.4
       react-dom:
         specifier: '>=18.2.0 <20.0.0'
         version: 19.2.4(react@19.2.4)
@@ -762,9 +768,6 @@ importers:
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.14
-      react:
-        specifier: 'catalog:'
-        version: 19.2.4
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -795,30 +798,40 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      i18next:
-        specifier: '>=23'
-        version: 26.3.6(typescript@6.0.3)
       lucide-react:
         specifier: 1.7.0
         version: 1.7.0(react@19.2.4)
       motion:
         specifier: ^12.23.24
         version: 12.43.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      react:
-        specifier: ^19.0.0
-        version: 19.2.4
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.2.4(react@19.2.4)
-      react-i18next:
-        specifier: ^17.0.8
-        version: 17.0.10(i18next@26.3.6(typescript@6.0.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@6.0.3)
-      react-router:
-        specifier: ^7.15.0
-        version: 7.18.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       tailwind-merge:
         specifier: ^3.5.0
         version: 3.6.0
+    devDependencies:
+      '@types/react':
+        specifier: 19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: 19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      i18next:
+        specifier: 26.3.4
+        version: 26.3.4(typescript@6.0.2)
+      react:
+        specifier: 19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: 19.2.4
+        version: 19.2.4(react@19.2.4)
+      react-i18next:
+        specifier: 17.0.8
+        version: 17.0.8(i18next@26.3.4(typescript@6.0.2))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@6.0.2)
+      react-router:
+        specifier: 7.18.2
+        version: 7.18.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      typescript:
+        specifier: 6.0.2
+        version: 6.0.2
 
   ../sdkwork-ui/sdkwork-ui-pc-react:
     dependencies:
@@ -989,13 +1002,13 @@ importers:
         specifier: 'catalog:'
         version: 1.7.0(react@19.2.4)
       react:
-        specifier: '>=18.2.0 <20.0.0'
+        specifier: 'catalog:'
         version: 19.2.4
       react-dom:
         specifier: '>=18.2.0 <20.0.0'
         version: 19.2.4(react@19.2.4)
       react-i18next:
-        specifier: '>=14.0.0'
+        specifier: 'catalog:'
         version: 17.0.10(i18next@26.3.6(typescript@6.0.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@6.0.3)
     devDependencies:
       '@types/react':
@@ -1194,13 +1207,13 @@ importers:
         specifier: 'catalog:'
         version: 1.7.0(react@19.2.4)
       react:
-        specifier: '>=18.2.0 <20.0.0'
+        specifier: 'catalog:'
         version: 19.2.4
       react-dom:
         specifier: '>=18.2.0 <20.0.0'
         version: 19.2.4(react@19.2.4)
       react-i18next:
-        specifier: '>=14.0.0'
+        specifier: 'catalog:'
         version: 17.0.10(i18next@26.3.6(typescript@6.0.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@6.0.3)
     devDependencies:
       typescript:
@@ -3766,6 +3779,14 @@ packages:
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
 
+  i18next@26.3.4:
+    resolution: {integrity: sha512-pa7m0d7pBDqGHZxljT+WPFeyFgQ7P7SciPPo1tTqYuO0z4sqADYhwnBESmmGp/wEof1inwdls/k8ZgTg8rxFHA==}
+    peerDependencies:
+      typescript: ^5 || ^6
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   i18next@26.3.6:
     resolution: {integrity: sha512-Bu5Z2nAXgfVyM8xvW3jk9EKRIuX37PudsrBViThNFx7CR7aaYTpP01cxNB/E4c4UUzTDiAZRstEhsRfPOL/8xA==}
     peerDependencies:
@@ -4276,6 +4297,22 @@ packages:
       typescript:
         optional: true
 
+  react-i18next@17.0.8:
+    resolution: {integrity: sha512-0ooKbGLU8JXhe1zwpQUWIeXSgLPOfwJmgheWRIUpcoA0CpyabpGhayjdG+/eA5esC1AQ8h2jWpXjJfzQzeDOCw==}
+    peerDependencies:
+      i18next: '>= 26.2.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+      typescript: ^5 || ^6
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+      typescript:
+        optional: true
+
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
 
@@ -4327,6 +4364,16 @@ packages:
 
   react-router@7.18.1:
     resolution: {integrity: sha512-GDLgg3i3uM0aeJO3Fm+TCS+sDQ7gu12T6x0qdTEzcwqEfleci7JwugVNIF3U//0FWKnJT7ptG+20B2jfDqnZAg==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+
+  react-router@7.18.2:
+    resolution: {integrity: sha512-aUVMjFm3GAPTTZL7oYr5E7ETiqfQCHRLH+B+5afnICvf0r7kkK4eR6SMuwbSTJw/7t+12khT/Kahij49fqOCIg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'
@@ -7479,6 +7526,10 @@ snapshots:
 
   html-void-elements@3.0.0: {}
 
+  i18next@26.3.4(typescript@6.0.2):
+    optionalDependencies:
+      typescript: 6.0.2
+
   i18next@26.3.6(typescript@6.0.3):
     optionalDependencies:
       typescript: 6.0.3
@@ -7935,6 +7986,17 @@ snapshots:
       react-dom: 19.2.4(react@19.2.4)
       typescript: 6.0.3
 
+  react-i18next@17.0.8(i18next@26.3.4(typescript@6.0.2))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@6.0.2):
+    dependencies:
+      '@babel/runtime': 7.29.7
+      html-parse-stringify: 3.0.1
+      i18next: 26.3.4(typescript@6.0.2)
+      react: 19.2.4
+      use-sync-external-store: 1.6.0(react@19.2.4)
+    optionalDependencies:
+      react-dom: 19.2.4(react@19.2.4)
+      typescript: 6.0.2
+
   react-is@17.0.2: {}
 
   react-remove-scroll-bar@2.3.8(@types/react@19.2.14)(react@19.2.4):
@@ -7980,6 +8042,14 @@ snapshots:
       react: 19.2.4
 
   react-router@7.18.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      cookie: 1.1.1
+      react: 19.2.4
+      set-cookie-parser: 2.7.2
+    optionalDependencies:
+      react-dom: 19.2.4(react@19.2.4)
+
+  react-router@7.18.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       cookie: 1.1.1
       react: 19.2.4

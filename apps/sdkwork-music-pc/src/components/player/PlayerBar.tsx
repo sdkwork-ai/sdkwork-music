@@ -1,4 +1,3 @@
-import { MusicTrack } from '../../types/music';
 import { usePlayer } from '../../providers/PlayerProvider';
 
 export function PlayerBar() {
