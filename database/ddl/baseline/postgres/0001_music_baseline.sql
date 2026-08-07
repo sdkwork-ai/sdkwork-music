@@ -6,7 +6,7 @@
 -- Consolidated legacy baseline for sdkwork-music database module.
 -- source: crates/sdkwork-music-storage-sqlx-rust/migrations/0001_music_foundation.sql
 
-CREATE TABLE music_artist (
+CREATE TABLE IF NOT EXISTS music_artist (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   slug TEXT NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE music_artist (
   UNIQUE (tenant_id, slug)
 );
 
-CREATE TABLE music_album (
+CREATE TABLE IF NOT EXISTS music_album (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   artist_id TEXT NOT NULL REFERENCES music_artist(id),
@@ -31,7 +31,7 @@ CREATE TABLE music_album (
   UNIQUE (tenant_id, slug)
 );
 
-CREATE TABLE music_audio_asset (
+CREATE TABLE IF NOT EXISTS music_audio_asset (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   title TEXT NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE music_audio_asset (
   UNIQUE (tenant_id, drive_uri)
 );
 
-CREATE TABLE music_track (
+CREATE TABLE IF NOT EXISTS music_track (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   artist_id TEXT NOT NULL REFERENCES music_artist(id),
@@ -68,13 +68,13 @@ CREATE TABLE music_track (
   UNIQUE (tenant_id, slug)
 );
 
-CREATE TABLE music_track_tag (
+CREATE TABLE IF NOT EXISTS music_track_tag (
   track_id TEXT NOT NULL REFERENCES music_track(id) ON DELETE CASCADE,
   tag TEXT NOT NULL,
   PRIMARY KEY (track_id, tag)
 );
 
-CREATE TABLE music_lyric (
+CREATE TABLE IF NOT EXISTS music_lyric (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   track_id TEXT NOT NULL REFERENCES music_track(id) ON DELETE CASCADE,
@@ -86,7 +86,7 @@ CREATE TABLE music_lyric (
   UNIQUE (tenant_id, track_id, language, source)
 );
 
-CREATE TABLE music_lyric_line (
+CREATE TABLE IF NOT EXISTS music_lyric_line (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   lyric_id TEXT NOT NULL REFERENCES music_lyric(id) ON DELETE CASCADE,
@@ -100,7 +100,7 @@ CREATE TABLE music_lyric_line (
   UNIQUE (lyric_id, position)
 );
 
-CREATE TABLE music_rights_policy (
+CREATE TABLE IF NOT EXISTS music_rights_policy (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   policy_code TEXT NOT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE music_rights_policy (
   UNIQUE (tenant_id, policy_code)
 );
 
-CREATE TABLE music_playlist (
+CREATE TABLE IF NOT EXISTS music_playlist (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   slug TEXT NOT NULL,
@@ -126,14 +126,14 @@ CREATE TABLE music_playlist (
   UNIQUE (tenant_id, slug)
 );
 
-CREATE TABLE music_playlist_track (
+CREATE TABLE IF NOT EXISTS music_playlist_track (
   playlist_id TEXT NOT NULL REFERENCES music_playlist(id) ON DELETE CASCADE,
   track_id TEXT NOT NULL REFERENCES music_track(id) ON DELETE CASCADE,
   position INTEGER NOT NULL,
   PRIMARY KEY (playlist_id, track_id)
 );
 
-CREATE TABLE music_playlist_follow (
+CREATE TABLE IF NOT EXISTS music_playlist_follow (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -143,7 +143,7 @@ CREATE TABLE music_playlist_follow (
   UNIQUE (tenant_id, user_id, playlist_id)
 );
 
-CREATE TABLE music_playlist_collaborator (
+CREATE TABLE IF NOT EXISTS music_playlist_collaborator (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   playlist_id TEXT NOT NULL REFERENCES music_playlist(id) ON DELETE CASCADE,
@@ -155,7 +155,7 @@ CREATE TABLE music_playlist_collaborator (
   UNIQUE (tenant_id, playlist_id, user_id)
 );
 
-CREATE TABLE music_comment (
+CREATE TABLE IF NOT EXISTS music_comment (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -171,7 +171,7 @@ CREATE TABLE music_comment (
   updated_at TEXT NOT NULL
 );
 
-CREATE TABLE music_content_report (
+CREATE TABLE IF NOT EXISTS music_content_report (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   reporter_user_id TEXT NOT NULL,
@@ -187,7 +187,7 @@ CREATE TABLE music_content_report (
   resolved_at TEXT
 );
 
-CREATE TABLE music_chart (
+CREATE TABLE IF NOT EXISTS music_chart (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   slug TEXT NOT NULL,
@@ -201,7 +201,7 @@ CREATE TABLE music_chart (
   UNIQUE (tenant_id, slug)
 );
 
-CREATE TABLE music_chart_entry (
+CREATE TABLE IF NOT EXISTS music_chart_entry (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   chart_id TEXT NOT NULL REFERENCES music_chart(id) ON DELETE CASCADE,
@@ -215,7 +215,7 @@ CREATE TABLE music_chart_entry (
   UNIQUE (chart_id, rank)
 );
 
-CREATE TABLE music_recommendation_shelf (
+CREATE TABLE IF NOT EXISTS music_recommendation_shelf (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   slug TEXT NOT NULL,
@@ -228,7 +228,7 @@ CREATE TABLE music_recommendation_shelf (
   UNIQUE (tenant_id, slug)
 );
 
-CREATE TABLE music_recommendation_item (
+CREATE TABLE IF NOT EXISTS music_recommendation_item (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   shelf_id TEXT NOT NULL REFERENCES music_recommendation_shelf(id) ON DELETE CASCADE,
@@ -243,7 +243,7 @@ CREATE TABLE music_recommendation_item (
   UNIQUE (shelf_id, item_type, item_id)
 );
 
-CREATE TABLE music_recommendation_feedback (
+CREATE TABLE IF NOT EXISTS music_recommendation_feedback (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -255,7 +255,7 @@ CREATE TABLE music_recommendation_feedback (
   created_at TEXT NOT NULL
 );
 
-CREATE TABLE music_user_library_item (
+CREATE TABLE IF NOT EXISTS music_user_library_item (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -267,7 +267,7 @@ CREATE TABLE music_user_library_item (
   UNIQUE (tenant_id, user_id, item_type, item_id)
 );
 
-CREATE TABLE music_like (
+CREATE TABLE IF NOT EXISTS music_like (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -278,7 +278,7 @@ CREATE TABLE music_like (
   UNIQUE (tenant_id, user_id, item_type, item_id, reaction_type)
 );
 
-CREATE TABLE music_follow (
+CREATE TABLE IF NOT EXISTS music_follow (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -288,7 +288,7 @@ CREATE TABLE music_follow (
   UNIQUE (tenant_id, user_id, target_type, target_id)
 );
 
-CREATE TABLE music_listening_history (
+CREATE TABLE IF NOT EXISTS music_listening_history (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT,
@@ -301,7 +301,7 @@ CREATE TABLE music_listening_history (
   created_at TEXT NOT NULL
 );
 
-CREATE TABLE music_download_entitlement (
+CREATE TABLE IF NOT EXISTS music_download_entitlement (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -315,7 +315,7 @@ CREATE TABLE music_download_entitlement (
   UNIQUE (tenant_id, user_id, track_id, quality)
 );
 
-CREATE TABLE music_playback_session (
+CREATE TABLE IF NOT EXISTS music_playback_session (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -329,7 +329,7 @@ CREATE TABLE music_playback_session (
   UNIQUE (tenant_id, user_id, device_id)
 );
 
-CREATE TABLE music_search_index (
+CREATE TABLE IF NOT EXISTS music_search_index (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   resource_type TEXT NOT NULL,
@@ -343,7 +343,7 @@ CREATE TABLE music_search_index (
   UNIQUE (tenant_id, resource_type, resource_id)
 );
 
-CREATE TABLE music_search_suggestion (
+CREATE TABLE IF NOT EXISTS music_search_suggestion (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   suggestion_type TEXT NOT NULL,
@@ -356,7 +356,7 @@ CREATE TABLE music_search_suggestion (
   UNIQUE (tenant_id, suggestion_type, query_text)
 );
 
-CREATE TABLE music_ai_generation_project (
+CREATE TABLE IF NOT EXISTS music_ai_generation_project (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -367,7 +367,7 @@ CREATE TABLE music_ai_generation_project (
   updated_at TEXT NOT NULL
 );
 
-CREATE TABLE music_ai_style_preset (
+CREATE TABLE IF NOT EXISTS music_ai_style_preset (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   slug TEXT NOT NULL,
@@ -380,7 +380,7 @@ CREATE TABLE music_ai_style_preset (
   UNIQUE (tenant_id, slug)
 );
 
-CREATE TABLE music_ai_prompt_template (
+CREATE TABLE IF NOT EXISTS music_ai_prompt_template (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   slug TEXT NOT NULL,
@@ -393,7 +393,7 @@ CREATE TABLE music_ai_prompt_template (
   UNIQUE (tenant_id, slug)
 );
 
-CREATE TABLE music_ai_generation_provider (
+CREATE TABLE IF NOT EXISTS music_ai_generation_provider (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   provider_code TEXT NOT NULL,
@@ -413,7 +413,7 @@ CREATE TABLE music_ai_generation_provider (
   UNIQUE (tenant_id, provider_code)
 );
 
-CREATE TABLE music_ai_generation_provider_model (
+CREATE TABLE IF NOT EXISTS music_ai_generation_provider_model (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   provider_id TEXT NOT NULL REFERENCES music_ai_generation_provider(id) ON DELETE CASCADE,
@@ -433,7 +433,7 @@ CREATE TABLE music_ai_generation_provider_model (
   UNIQUE (tenant_id, provider_code, model_name)
 );
 
-CREATE TABLE music_ai_generation_task (
+CREATE TABLE IF NOT EXISTS music_ai_generation_task (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   project_id TEXT REFERENCES music_ai_generation_project(id) ON DELETE SET NULL,
@@ -465,7 +465,7 @@ CREATE TABLE music_ai_generation_task (
   completed_at TEXT
 );
 
-CREATE TABLE music_ai_generation_provider_attempt (
+CREATE TABLE IF NOT EXISTS music_ai_generation_provider_attempt (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   task_id TEXT NOT NULL REFERENCES music_ai_generation_task(id) ON DELETE CASCADE,
@@ -489,7 +489,7 @@ CREATE TABLE music_ai_generation_provider_attempt (
   updated_at TEXT NOT NULL
 );
 
-CREATE TABLE music_ai_generation_provider_event (
+CREATE TABLE IF NOT EXISTS music_ai_generation_provider_event (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   task_id TEXT NOT NULL REFERENCES music_ai_generation_task(id) ON DELETE CASCADE,
@@ -509,7 +509,7 @@ CREATE TABLE music_ai_generation_provider_event (
   UNIQUE (provider_code, external_task_id, event_type, payload_hash)
 );
 
-CREATE TABLE music_ai_generation_variant (
+CREATE TABLE IF NOT EXISTS music_ai_generation_variant (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   task_id TEXT NOT NULL REFERENCES music_ai_generation_task(id) ON DELETE CASCADE,
@@ -523,7 +523,7 @@ CREATE TABLE music_ai_generation_variant (
   updated_at TEXT NOT NULL
 );
 
-CREATE TABLE music_ai_generation_credit_ledger (
+CREATE TABLE IF NOT EXISTS music_ai_generation_credit_ledger (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -535,7 +535,7 @@ CREATE TABLE music_ai_generation_credit_ledger (
   created_at TEXT NOT NULL
 );
 
-CREATE TABLE music_ai_generation_notification (
+CREATE TABLE IF NOT EXISTS music_ai_generation_notification (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   user_id TEXT NOT NULL,
@@ -549,7 +549,7 @@ CREATE TABLE music_ai_generation_notification (
   UNIQUE (tenant_id, user_id, task_id, notification_type)
 );
 
-CREATE TABLE music_moderation_signal (
+CREATE TABLE IF NOT EXISTS music_moderation_signal (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   resource_type TEXT NOT NULL,
@@ -562,7 +562,7 @@ CREATE TABLE music_moderation_signal (
   updated_at TEXT NOT NULL
 );
 
-CREATE TABLE music_release (
+CREATE TABLE IF NOT EXISTS music_release (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   track_id TEXT REFERENCES music_track(id) ON DELETE SET NULL,
@@ -575,7 +575,7 @@ CREATE TABLE music_release (
   updated_at TEXT NOT NULL
 );
 
-CREATE TABLE music_release_channel (
+CREATE TABLE IF NOT EXISTS music_release_channel (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   release_id TEXT NOT NULL,
@@ -588,7 +588,7 @@ CREATE TABLE music_release_channel (
   UNIQUE (tenant_id, release_id, channel_code)
 );
 
-CREATE TABLE music_rights_territory (
+CREATE TABLE IF NOT EXISTS music_rights_territory (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   rights_policy_id TEXT NOT NULL,
@@ -601,7 +601,7 @@ CREATE TABLE music_rights_territory (
   UNIQUE (tenant_id, rights_policy_id, region_code)
 );
 
-CREATE TABLE music_play_event (
+CREATE TABLE IF NOT EXISTS music_play_event (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   track_id TEXT NOT NULL REFERENCES music_track(id) ON DELETE CASCADE,
@@ -609,7 +609,7 @@ CREATE TABLE music_play_event (
   occurred_at TEXT NOT NULL
 );
 
-CREATE TABLE music_editorial_audit (
+CREATE TABLE IF NOT EXISTS music_editorial_audit (
   id TEXT PRIMARY KEY,
   tenant_id TEXT NOT NULL,
   resource_type TEXT NOT NULL,
@@ -621,14 +621,14 @@ CREATE TABLE music_editorial_audit (
   created_at TEXT NOT NULL
 );
 
-CREATE TABLE music_schema_version (
+CREATE TABLE IF NOT EXISTS music_schema_version (
   sequence INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
   checksum TEXT NOT NULL,
   applied_at TEXT NOT NULL
 );
 
-CREATE TABLE music_migration_lock (
+CREATE TABLE IF NOT EXISTS music_migration_lock (
   lock_name TEXT PRIMARY KEY,
   lock_owner TEXT NOT NULL,
   locked_until TEXT NOT NULL,
@@ -637,52 +637,52 @@ CREATE TABLE music_migration_lock (
   updated_at TEXT NOT NULL
 );
 
-CREATE INDEX idx_music_artist_tenant_slug ON music_artist (tenant_id, slug);
-CREATE INDEX idx_music_album_tenant_artist ON music_album (tenant_id, artist_id, release_date);
-CREATE INDEX idx_music_audio_asset_tenant_status ON music_audio_asset (tenant_id, status, updated_at DESC);
-CREATE INDEX idx_music_track_tenant_status_updated ON music_track (tenant_id, status, updated_at DESC);
-CREATE INDEX idx_music_track_tenant_artist ON music_track (tenant_id, artist_id, status);
-CREATE INDEX idx_music_track_tenant_album ON music_track (tenant_id, album_id, status);
-CREATE INDEX idx_music_track_tag_tag ON music_track_tag (tag, track_id);
-CREATE INDEX idx_music_lyric_track_language ON music_lyric (tenant_id, track_id, language);
-CREATE INDEX idx_music_lyric_line_position ON music_lyric_line (lyric_id, position);
-CREATE INDEX idx_music_rights_policy_tenant_status ON music_rights_policy (tenant_id, status, updated_at DESC);
-CREATE INDEX idx_music_playlist_tenant_slug ON music_playlist (tenant_id, slug);
-CREATE INDEX idx_music_playlist_track_position ON music_playlist_track (playlist_id, position);
-CREATE INDEX idx_music_playlist_follow_user ON music_playlist_follow (tenant_id, user_id, created_at DESC);
-CREATE INDEX idx_music_playlist_collaborator_playlist ON music_playlist_collaborator (tenant_id, playlist_id, status);
-CREATE INDEX idx_music_comment_resource_created ON music_comment (tenant_id, resource_type, resource_id, created_at DESC);
-CREATE INDEX idx_music_content_report_status_created ON music_content_report (tenant_id, status, created_at DESC);
-CREATE INDEX idx_music_chart_tenant_status_updated ON music_chart (tenant_id, status, updated_at DESC);
-CREATE INDEX idx_music_chart_entry_chart_rank ON music_chart_entry (chart_id, rank);
-CREATE INDEX idx_music_recommendation_shelf_tenant_status ON music_recommendation_shelf (tenant_id, status, updated_at DESC);
-CREATE INDEX idx_music_recommendation_item_shelf_position ON music_recommendation_item (shelf_id, position);
-CREATE INDEX idx_music_recommendation_feedback_user_created ON music_recommendation_feedback (tenant_id, user_id, created_at DESC);
-CREATE INDEX idx_music_user_library_user_updated ON music_user_library_item (tenant_id, user_id, updated_at DESC);
-CREATE INDEX idx_music_like_user_item ON music_like (tenant_id, user_id, item_type, item_id);
-CREATE INDEX idx_music_follow_user_target ON music_follow (tenant_id, user_id, target_type, target_id);
-CREATE INDEX idx_music_listening_history_user_track ON music_listening_history (tenant_id, user_id, track_id, occurred_at DESC);
-CREATE INDEX idx_music_listening_history_track ON music_listening_history (tenant_id, track_id, occurred_at DESC);
-CREATE INDEX idx_music_download_entitlement_user_status ON music_download_entitlement (tenant_id, user_id, status, updated_at DESC);
-CREATE INDEX idx_music_playback_session_user_status ON music_playback_session (tenant_id, user_id, playback_state, updated_at DESC);
-CREATE INDEX idx_music_search_index_query ON music_search_index (tenant_id, resource_type, popularity_score DESC, updated_at DESC);
-CREATE INDEX idx_music_search_suggestion_tenant_type ON music_search_suggestion (tenant_id, suggestion_type, status, weight DESC);
-CREATE INDEX idx_music_ai_generation_project_user_updated ON music_ai_generation_project (tenant_id, user_id, updated_at DESC);
-CREATE INDEX idx_music_ai_style_preset_tenant_status ON music_ai_style_preset (tenant_id, status, updated_at DESC);
-CREATE INDEX idx_music_ai_prompt_template_tenant_status ON music_ai_prompt_template (tenant_id, status, updated_at DESC);
-CREATE INDEX idx_music_ai_generation_provider_tenant_status ON music_ai_generation_provider (tenant_id, status, updated_at DESC);
-CREATE INDEX idx_music_ai_generation_provider_model_tenant_status ON music_ai_generation_provider_model (tenant_id, provider_code, status, updated_at DESC);
-CREATE INDEX idx_music_ai_generation_task_tenant_status_updated ON music_ai_generation_task (tenant_id, status, updated_at DESC);
-CREATE INDEX idx_music_ai_generation_task_user_updated ON music_ai_generation_task (tenant_id, user_id, updated_at DESC);
-CREATE INDEX idx_music_ai_generation_task_provider_external ON music_ai_generation_task (tenant_id, provider_code, external_task_id);
-CREATE INDEX idx_music_ai_generation_provider_attempt_task ON music_ai_generation_provider_attempt (tenant_id, task_id, created_at DESC);
-CREATE INDEX idx_music_ai_generation_provider_event_task_created ON music_ai_generation_provider_event (tenant_id, task_id, created_at DESC);
-CREATE INDEX idx_music_ai_generation_variant_task ON music_ai_generation_variant (task_id, created_at DESC);
-CREATE INDEX idx_music_ai_generation_credit_ledger_user_created ON music_ai_generation_credit_ledger (tenant_id, user_id, created_at DESC);
-CREATE INDEX idx_music_ai_generation_notification_user_status ON music_ai_generation_notification (tenant_id, user_id, status, created_at DESC);
-CREATE INDEX idx_music_moderation_signal_resource ON music_moderation_signal (tenant_id, resource_type, resource_id, created_at DESC);
-CREATE INDEX idx_music_release_tenant_status_published ON music_release (tenant_id, status, published_at DESC);
-CREATE INDEX idx_music_release_channel_release_status ON music_release_channel (tenant_id, release_id, distribution_status);
-CREATE INDEX idx_music_rights_territory_policy_region ON music_rights_territory (tenant_id, rights_policy_id, region_code);
-CREATE INDEX idx_music_play_event_track ON music_play_event (tenant_id, track_id, occurred_at DESC);
-CREATE INDEX idx_music_editorial_audit_resource ON music_editorial_audit (tenant_id, resource_type, resource_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_artist_tenant_slug ON music_artist (tenant_id, slug);
+CREATE INDEX IF NOT EXISTS idx_music_album_tenant_artist ON music_album (tenant_id, artist_id, release_date);
+CREATE INDEX IF NOT EXISTS idx_music_audio_asset_tenant_status ON music_audio_asset (tenant_id, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_track_tenant_status_updated ON music_track (tenant_id, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_track_tenant_artist ON music_track (tenant_id, artist_id, status);
+CREATE INDEX IF NOT EXISTS idx_music_track_tenant_album ON music_track (tenant_id, album_id, status);
+CREATE INDEX IF NOT EXISTS idx_music_track_tag_tag ON music_track_tag (tag, track_id);
+CREATE INDEX IF NOT EXISTS idx_music_lyric_track_language ON music_lyric (tenant_id, track_id, language);
+CREATE INDEX IF NOT EXISTS idx_music_lyric_line_position ON music_lyric_line (lyric_id, position);
+CREATE INDEX IF NOT EXISTS idx_music_rights_policy_tenant_status ON music_rights_policy (tenant_id, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_playlist_tenant_slug ON music_playlist (tenant_id, slug);
+CREATE INDEX IF NOT EXISTS idx_music_playlist_track_position ON music_playlist_track (playlist_id, position);
+CREATE INDEX IF NOT EXISTS idx_music_playlist_follow_user ON music_playlist_follow (tenant_id, user_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_playlist_collaborator_playlist ON music_playlist_collaborator (tenant_id, playlist_id, status);
+CREATE INDEX IF NOT EXISTS idx_music_comment_resource_created ON music_comment (tenant_id, resource_type, resource_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_content_report_status_created ON music_content_report (tenant_id, status, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_chart_tenant_status_updated ON music_chart (tenant_id, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_chart_entry_chart_rank ON music_chart_entry (chart_id, rank);
+CREATE INDEX IF NOT EXISTS idx_music_recommendation_shelf_tenant_status ON music_recommendation_shelf (tenant_id, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_recommendation_item_shelf_position ON music_recommendation_item (shelf_id, position);
+CREATE INDEX IF NOT EXISTS idx_music_recommendation_feedback_user_created ON music_recommendation_feedback (tenant_id, user_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_user_library_user_updated ON music_user_library_item (tenant_id, user_id, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_like_user_item ON music_like (tenant_id, user_id, item_type, item_id);
+CREATE INDEX IF NOT EXISTS idx_music_follow_user_target ON music_follow (tenant_id, user_id, target_type, target_id);
+CREATE INDEX IF NOT EXISTS idx_music_listening_history_user_track ON music_listening_history (tenant_id, user_id, track_id, occurred_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_listening_history_track ON music_listening_history (tenant_id, track_id, occurred_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_download_entitlement_user_status ON music_download_entitlement (tenant_id, user_id, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_playback_session_user_status ON music_playback_session (tenant_id, user_id, playback_state, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_search_index_query ON music_search_index (tenant_id, resource_type, popularity_score DESC, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_search_suggestion_tenant_type ON music_search_suggestion (tenant_id, suggestion_type, status, weight DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_project_user_updated ON music_ai_generation_project (tenant_id, user_id, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_style_preset_tenant_status ON music_ai_style_preset (tenant_id, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_prompt_template_tenant_status ON music_ai_prompt_template (tenant_id, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_provider_tenant_status ON music_ai_generation_provider (tenant_id, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_provider_model_tenant_status ON music_ai_generation_provider_model (tenant_id, provider_code, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_task_tenant_status_updated ON music_ai_generation_task (tenant_id, status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_task_user_updated ON music_ai_generation_task (tenant_id, user_id, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_task_provider_external ON music_ai_generation_task (tenant_id, provider_code, external_task_id);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_provider_attempt_task ON music_ai_generation_provider_attempt (tenant_id, task_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_provider_event_task_created ON music_ai_generation_provider_event (tenant_id, task_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_variant_task ON music_ai_generation_variant (task_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_credit_ledger_user_created ON music_ai_generation_credit_ledger (tenant_id, user_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_ai_generation_notification_user_status ON music_ai_generation_notification (tenant_id, user_id, status, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_moderation_signal_resource ON music_moderation_signal (tenant_id, resource_type, resource_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_release_tenant_status_published ON music_release (tenant_id, status, published_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_release_channel_release_status ON music_release_channel (tenant_id, release_id, distribution_status);
+CREATE INDEX IF NOT EXISTS idx_music_rights_territory_policy_region ON music_rights_territory (tenant_id, rights_policy_id, region_code);
+CREATE INDEX IF NOT EXISTS idx_music_play_event_track ON music_play_event (tenant_id, track_id, occurred_at DESC);
+CREATE INDEX IF NOT EXISTS idx_music_editorial_audit_resource ON music_editorial_audit (tenant_id, resource_type, resource_id, created_at DESC);
