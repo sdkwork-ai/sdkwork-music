@@ -1,0 +1,734 @@
+{
+  "kind": "sdkwork.route.manifest",
+  "packageName": "sdkwork-routes-music-backend-api",
+  "surface": "backend-api",
+  "owner": "sdkwork-music",
+  "domain": "music",
+  "capability": "music",
+  "apiAuthority": "sdkwork-music-backend-api",
+  "sdkFamily": "sdkwork-music-backend-sdk",
+  "prefix": "/backend/v3/api",
+  "authMode": "dual-token",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/artists",
+      "tag": "music",
+      "operationId": "artists.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/artists",
+      "tag": "music",
+      "operationId": "artists.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/albums",
+      "tag": "music",
+      "operationId": "albums.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/albums",
+      "tag": "music",
+      "operationId": "albums.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/tracks",
+      "tag": "music",
+      "operationId": "tracks.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/tracks",
+      "tag": "music",
+      "operationId": "tracks.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/tracks/{trackId}/publish",
+      "tag": "music",
+      "operationId": "tracks.publish",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/tracks/{trackId}/archive",
+      "tag": "music",
+      "operationId": "tracks.archive",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/playlists",
+      "tag": "music",
+      "operationId": "playlists.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/audio/assets",
+      "tag": "music",
+      "operationId": "audio.assets.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/audio/assets",
+      "tag": "music",
+      "operationId": "audio.assets.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/charts",
+      "tag": "music",
+      "operationId": "charts.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/charts",
+      "tag": "music",
+      "operationId": "charts.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/music/charts/{chartId}",
+      "tag": "music",
+      "operationId": "charts.update",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/charts/{chartId}/entries",
+      "tag": "music",
+      "operationId": "charts.entries.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/recommendation/shelves",
+      "tag": "music",
+      "operationId": "recommendation.shelves.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/recommendation/shelves",
+      "tag": "music",
+      "operationId": "recommendation.shelves.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/recommendation/feedback",
+      "tag": "music",
+      "operationId": "recommendation.feedback.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/content_reports",
+      "tag": "music",
+      "operationId": "contentReports.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/content_reports/{reportId}/resolve",
+      "tag": "music",
+      "operationId": "contentReports.resolve",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/generations/style_presets",
+      "tag": "music",
+      "operationId": "generations.stylePresets.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/generations/style_presets",
+      "tag": "music",
+      "operationId": "generations.stylePresets.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/music/generations/style_presets/{presetId}",
+      "tag": "music",
+      "operationId": "generations.stylePresets.update",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/generations/prompt_templates",
+      "tag": "music",
+      "operationId": "generations.promptTemplates.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/generations/prompt_templates",
+      "tag": "music",
+      "operationId": "generations.promptTemplates.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/music/generations/prompt_templates/{templateId}",
+      "tag": "music",
+      "operationId": "generations.promptTemplates.update",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/generations/credit_ledger",
+      "tag": "music",
+      "operationId": "generations.creditLedger.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/generations",
+      "tag": "music",
+      "operationId": "generations.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/generations/providers",
+      "tag": "music",
+      "operationId": "generations.providers.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/generations/providers",
+      "tag": "music",
+      "operationId": "generations.providers.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "PATCH",
+      "path": "/backend/v3/api/music/generations/providers/{providerId}",
+      "tag": "music",
+      "operationId": "generations.providers.update",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/generations/provider_models",
+      "tag": "music",
+      "operationId": "generations.providerModels.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/generations/provider_models",
+      "tag": "music",
+      "operationId": "generations.providerModels.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/generations/{generationId}/attempts",
+      "tag": "music",
+      "operationId": "generations.attempts.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/generations/events",
+      "tag": "music",
+      "operationId": "generations.events.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/generations/{generationId}/sync",
+      "tag": "music",
+      "operationId": "generations.sync",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/generations/webhooks/{providerCode}/events",
+      "tag": "music",
+      "operationId": "generations.webhooks.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/generations/{generationId}/moderate",
+      "tag": "music",
+      "operationId": "generations.moderate",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/generations/{generationId}/publish",
+      "tag": "music",
+      "operationId": "generations.publish",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/rights/policies",
+      "tag": "music",
+      "operationId": "rights.policies.management.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/rights/policies",
+      "tag": "music",
+      "operationId": "rights.policies.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/rights/policies/{policyId}/territories",
+      "tag": "music",
+      "operationId": "rights.policies.territories.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/moderation/signals",
+      "tag": "music",
+      "operationId": "moderation.signals.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/backend/v3/api/music/releases",
+      "tag": "music",
+      "operationId": "releases.list",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/backend/v3/api/music/releases/{releaseId}/channels",
+      "tag": "music",
+      "operationId": "releases.channels.create",
+      "authMode": "dual-token",
+      "ownership": {
+        "owner": "sdkwork-music",
+        "apiAuthority": "sdkwork-music-backend-api"
+      },
+      "source": {
+        "kind": "rust-route-crate",
+        "crateRoot": "crates/sdkwork-routes-music-backend-api",
+        "routeCrate": "sdkwork-routes-music-backend-api"
+      }
+    }
+  ]
+}

@@ -6,12 +6,13 @@
     "version": "0.1.0",
     "language": "typescript",
     "sdkType": "backend",
+    "protocol": "http",
     "packageName": "sdkwork-music-backend-sdk-generated-typescript"
   },
   "generatedFiles": [
     {
       "path": "bin/publish-core.mjs",
-      "sha256": "affb1f1b5400ac492e94e2d01f3104b8dd38b50329e371265d4f0945f2b0763c"
+      "sha256": "a47e95119bf3eafcbcb2102f7024c147f967924e4e3f343d1a29effb4b6765df"
     },
     {
       "path": "bin/publish.ps1",
@@ -39,19 +40,19 @@
     },
     {
       "path": "package.json",
-      "sha256": "bd6883d53f29d38118cadddc455bd814ecc8832e8e80935479f7c032d89ca91c"
+      "sha256": "2907053cf7d7236b62d3ff2d880a3ed656ece1cf673959638235e3b13014b27b"
     },
     {
       "path": "README.md",
-      "sha256": "b730fd226871a0911588bedd4e7d75ba8247639b4e93a79a84b3cd864f812709"
+      "sha256": "ce2ee9e7a4b9682c288d7240ae8b488a7a2cd1f778e04f843c7955416fc189c8"
     },
     {
       "path": "sdkwork-sdk.json",
-      "sha256": "e84caf5f721122e3fe5fe49321f5004b4f8ba6ad5d2cc7d1698cd7aaebaf958a"
+      "sha256": "bd2f906c5a97e109e685b49fe1122c2b2a8051b0d15c4cea1a9712aad863af05"
     },
     {
       "path": "src/api/base.ts",
-      "sha256": "02ad25e6bf331ff241ba387c2947ddf1900dd849038e08c2757416a3aa788a04"
+      "sha256": "94d136c54a008dfe7602e373a0b2c79176bbf2fc6e7c899fc23b1f12f750380f"
     },
     {
       "path": "src/api/index.ts",
@@ -59,7 +60,7 @@
     },
     {
       "path": "src/api/music.ts",
-      "sha256": "138a030e0545008d1a8c7910a7d010d54432086a6a6933189d4b638faa763c41"
+      "sha256": "8f69d902cfc5cfbc31a17e462582885c9ccb101f4eb46494acafd82bf969e20f"
     },
     {
       "path": "src/api/paths.ts",
@@ -71,7 +72,7 @@
     },
     {
       "path": "src/http/client.ts",
-      "sha256": "0d746abe3766ca1aa52d5ec5903911ec9bb2c9e50d05f3c74ebb7803efebb9ec"
+      "sha256": "bab0f740731f04f1f6e3c591cba91b1577f0ca521054d187755f437925d3dc6d"
     },
     {
       "path": "src/http/index.ts",
@@ -83,71 +84,147 @@
     },
     {
       "path": "src/sdk.ts",
-      "sha256": "057a08826e9c7729430250d231dbd3cf89d034e16f222d793c92adff3d9b8582"
+      "sha256": "7be1a55c1a4e8bd2fbb05b82b6b38f5e0a8234e86af726fd4ad735b2f7b73ad1"
+    },
+    {
+      "path": "src/types/albums-create-response201.ts",
+      "sha256": "05a12113248d9a1306c4b6b6468c7ce2427cab42716056a48e1e9e6fc5aad051"
     },
     {
       "path": "src/types/albums-management-list-response.ts",
-      "sha256": "6383c0631e1f41a2c567652bf0a65514787ebb025ffbdd1961e3d0ef6659ae16"
+      "sha256": "2c2ed2d4cf6c455c65f7167950f0b6c88597a8fe0815b38f33eb3094390c1efd"
+    },
+    {
+      "path": "src/types/artists-create-response201.ts",
+      "sha256": "0dc597d78d00ddc9ec30f1be12e896d69934055c114041fbc1bb2c9366465942"
     },
     {
       "path": "src/types/artists-management-list-response.ts",
-      "sha256": "056cd9cb270e73d66f248d74e9c632d4c06687df8cc7c9431f0f523d690318dd"
+      "sha256": "54b001007ed593f798b93c3c7bd0caa7b361a93240c8b37ed5bf2d7d5f73ceaf"
+    },
+    {
+      "path": "src/types/audio-assets-create-response201.ts",
+      "sha256": "559a4415577e5803df737d7a79f1a8af15b6b32fc7c81af3f3a75bcb5b9e0c7c"
     },
     {
       "path": "src/types/audio-assets-management-list-response.ts",
-      "sha256": "446c9ac4515d3ffa9d5d67aa04e0ba2d4406f1d8c435f1002ce9a5c30ebed7e2"
+      "sha256": "94648d40c347d3d178341f2d86f34a6fd544a28b50337d09546d8b2c9b327396"
+    },
+    {
+      "path": "src/types/charts-create-response201.ts",
+      "sha256": "87911e16153cac16a9189d66b60e7d9f10e2b465a661467fb82f44afa7a5e14c"
+    },
+    {
+      "path": "src/types/charts-entries-create-response201.ts",
+      "sha256": "249ed0433233ce7206a18e2c400a5426965063bb02c3dc2c68ade7edd8814221"
     },
     {
       "path": "src/types/charts-management-list-response.ts",
-      "sha256": "5e0b1468e3c8b1fa3e34041b8ab0220ceb85deebf10a0fd1f847fe163549bf35"
+      "sha256": "2191b65c8e15f0324bec22a4e285094a3de1f812b0171c79ba7bc0e0e92fb03f"
+    },
+    {
+      "path": "src/types/charts-update-response.ts",
+      "sha256": "1f146862bd0a8617a7e21f21635042f241a79769d28ff2619bbfa67735e72ede"
     },
     {
       "path": "src/types/common.ts",
-      "sha256": "c6adbdca8ccdb1656d1cb904e35cfc765d4a9075923190fba4b8787afd0cc710"
+      "sha256": "351d721c3c6f48f4453f92276856105120d72eb8d2fa9cd28de8e3854bf10f6c"
     },
     {
       "path": "src/types/content-reports-management-list-response.ts",
-      "sha256": "4af1742b89fb29705f8d004b6d40c96b121e9c74d9677bfd82f4eb9ba0ff9a81"
+      "sha256": "0f2b544759cce2580373bea20b6354377f04346ffd98cb3bbd5ba5c00cb7bca5"
+    },
+    {
+      "path": "src/types/content-reports-resolve-response.ts",
+      "sha256": "4ec34be92de1a535afb8f94abb0362728f5e963294532174ad5e7704db1c4abb"
+    },
+    {
+      "path": "src/types/field-error.ts",
+      "sha256": "7688827a804d5c888fdf626b89e3356832f858e24f0657069b6b842a31ae6907"
     },
     {
       "path": "src/types/generations-attempts-list-response.ts",
-      "sha256": "b5541ce327ed2600d7c258bcb41b2d70522bf9e9a1d85c3381d110513eb8b3c9"
+      "sha256": "4218485e5beaba0cc71bdd8a4812a4964a2b3a748e339400dfb107a7ebcce931"
     },
     {
       "path": "src/types/generations-credit-ledger-list-response.ts",
-      "sha256": "48f9c557e4b34018bca1db38fb8af67defbcff03b42781010616fb1b3e8212f4"
+      "sha256": "10ca454bd663bba8d783fabf2058caf9ac437d0ba065fafbaf5b515cc5896cf2"
     },
     {
       "path": "src/types/generations-events-management-list-response.ts",
-      "sha256": "fefab410e3ba32e8f469a12fbe4f1e4704700f5c807c976e7f231b02058e41f8"
+      "sha256": "d2da5db3c3cd0c0d5c331f3e00069020bdf5a1188d7482445b16f8c908d8141e"
     },
     {
       "path": "src/types/generations-management-list-response.ts",
-      "sha256": "0caaf8e1e0b4348567a284a7ddcb9809b1064e58f6505e0cbe5b2cfe757ddaea"
+      "sha256": "936596144baca838cea583e0dffb2f428098ca52b8cda250096c576828449960"
+    },
+    {
+      "path": "src/types/generations-moderate-response.ts",
+      "sha256": "63221c3a50513a5ed8367fdd1a1d3f4c9e837854fa5b587ca01a5be399078250"
+    },
+    {
+      "path": "src/types/generations-prompt-templates-create-response201.ts",
+      "sha256": "762fb22fcaf15cb26538c57653e9f275421cc2c092277823c3c1f3e374d0d8ab"
     },
     {
       "path": "src/types/generations-prompt-templates-management-list-response.ts",
-      "sha256": "32c0f51a521d3b4454b88b1982cfbfef409d74ec0d31f22b30e57d19dfb11d11"
+      "sha256": "593cd394279bd518fc894aaac49ed0942ac846550f0123bbfe6a591ca32b99fe"
+    },
+    {
+      "path": "src/types/generations-prompt-templates-update-response.ts",
+      "sha256": "bde304c8103267fdf0d8f4d0def0be5db04974c3e5f86be8867c7bca23f6c1dc"
+    },
+    {
+      "path": "src/types/generations-provider-models-create-response201.ts",
+      "sha256": "907a4bb8dc3ebdbfbc56bc0a6a32654a328b5585a7697ec2754f96fd0922a742"
     },
     {
       "path": "src/types/generations-provider-models-management-list-response.ts",
-      "sha256": "f29417dbef268fca3488e67f56b56b77a772d0665b40e67ffa0eeb075a50c99a"
+      "sha256": "bcb15c9192ce775342879a6dc947542ec88d7fe260a6cbd091350442f8ee7e32"
+    },
+    {
+      "path": "src/types/generations-providers-create-response201.ts",
+      "sha256": "8dc16abbea5a3122ea393bfe218e30d823a9cc93a5481c2491080e056f771785"
     },
     {
       "path": "src/types/generations-providers-management-list-response.ts",
-      "sha256": "b66e4236a21b2d0679e2705372a62ee495e3c0aec3329cb4caa8699d00a016c3"
+      "sha256": "b5b1350bbf2ebe58ae05a6052897b9b6e7785ec1df5d88f01b4ac74151185a9f"
+    },
+    {
+      "path": "src/types/generations-providers-update-response.ts",
+      "sha256": "20af0d65aba5ea2f2069c46244d802991e9725b2d35b3efbb338dc083d57180b"
+    },
+    {
+      "path": "src/types/generations-publish-response.ts",
+      "sha256": "8387f71350fe9b2dc86b5aab6daa082e0023eada2ec56d740d535c45106d8ca1"
+    },
+    {
+      "path": "src/types/generations-style-presets-create-response201.ts",
+      "sha256": "8e144434c1a1325ac6294aed9a13da7b03c79862d4c146914c2aeafa1bbae14c"
     },
     {
       "path": "src/types/generations-style-presets-management-list-response.ts",
-      "sha256": "244e69ad122facfa59ff4f477de06a2ae57f9b134466102e07edd52a48e0d87c"
+      "sha256": "2ed9d8b02e309ec8f7cd1ffe1bdf019fb011aeb88fc5abe015749632b91249c9"
+    },
+    {
+      "path": "src/types/generations-style-presets-update-response.ts",
+      "sha256": "9ffda7a2758e60d6c14b503623ac832a16382f5336d3ed4ab3b554fd1f39f021"
+    },
+    {
+      "path": "src/types/generations-sync-response.ts",
+      "sha256": "63aab314ae7869db1fdbd34dc7dc457ec78d46947ac53aeb0e7c46d590cf3207"
+    },
+    {
+      "path": "src/types/generations-webhooks-create-response201.ts",
+      "sha256": "8ac3e0df3601faf9beb09d853075391878cac5d17c9648305f4c70084531df24"
     },
     {
       "path": "src/types/index.ts",
-      "sha256": "0732d78bc537c57f4cbba34dbee060c0e2c8313e0d173aac3e2f1adaae59c327"
+      "sha256": "0b31e32f5bbf693b95e3bef5ac3c8e5d711a116277a2d384b4c71294665fae8b"
     },
     {
       "path": "src/types/moderation-signals-list-response.ts",
-      "sha256": "888f06497ddbcb51954fd69fef1d9f24e150a851d21d6eba944cd0a46a729fde"
+      "sha256": "23efbcf7072aadf0f54a5ab1d770d3d32a12b5fbc28b1e1161aec9d97afd36dc"
     },
     {
       "path": "src/types/music-ai-generation-credit-ledger-entry.ts",
@@ -167,11 +244,11 @@
     },
     {
       "path": "src/types/music-ai-generation-provider-attempt.ts",
-      "sha256": "d6e84ac4efbddfea86c9ce0b87dfe4c243aa15c25f447cbb2bda9b27dc5d534f"
+      "sha256": "13215012f3987a564b4d20a9731415bf0ff4b9364b2fd6ebbc2e39866ba8c22e"
     },
     {
       "path": "src/types/music-ai-generation-provider-command.ts",
-      "sha256": "07609a2b7f06e24e6c54ba62bc4ef8db7217d1ef5ef8a499796ccb750d765c38"
+      "sha256": "9cfa76553a5834310d1933ee581ccc8d7f034adec0b2fe5c1671632d62313e3c"
     },
     {
       "path": "src/types/music-ai-generation-provider-event-command.ts",
@@ -191,7 +268,7 @@
     },
     {
       "path": "src/types/music-ai-generation-provider.ts",
-      "sha256": "efe04e828ffbd0cb34ec9df3189be4e756f1f9b0af60671b7286ff3242a1e6dc"
+      "sha256": "a77a94e3ff90baa8da8154375e90bb4257a38be609369caf089b71290b255915"
     },
     {
       "path": "src/types/music-ai-generation-publish-command.ts",
@@ -244,10 +321,6 @@
     {
       "path": "src/types/music-album.ts",
       "sha256": "c68afa8ce70b729e5a65078a4a1def81632f4776d9189ba6752984c55d9e32ab"
-    },
-    {
-      "path": "src/types/music-api-result.ts",
-      "sha256": "3278b3984575bcc033570ceb6803b4a5f84f3d1f97430d224e3a3eec03c024c5"
     },
     {
       "path": "src/types/music-artist-command.ts",
@@ -442,32 +515,96 @@
       "sha256": "0cf5b57cc2006b78d36f976aef7c29adcbef60302ae38a1ed056a7f174ff6060"
     },
     {
+      "path": "src/types/page-info.ts",
+      "sha256": "0bf2b44313bc24851eb9ffb6063c1b9eb043e1e5721c8ace8882a3cfa21c932a"
+    },
+    {
       "path": "src/types/playlists-management-list-response.ts",
-      "sha256": "553992ca7d35f0c77e6e4f9a1e20e1e409ff90cc001bb6ca9e2e0bfcf872e228"
+      "sha256": "d41805081de4bab0dcee328708191b6a63a8d089de9ecb9cb6e093b039e3ca59"
     },
     {
       "path": "src/types/problem-detail.ts",
-      "sha256": "ea50f7466f2e1f6a350f2f7974613579a50cfe968d6ff503496c7662e12fb612"
+      "sha256": "c41fdf6433e1167d2fb1f3ac38fd13eb77178f4c0633c9e27824f1e1687ee4f6"
     },
     {
       "path": "src/types/recommendation-feedback-management-list-response.ts",
-      "sha256": "fd31936715f62da37557b2039731a4de93b9273835f5141ff6116a25c3f093ec"
+      "sha256": "ec7a1234497e0b869d112b8eab0fbf8a75c24a0f01efbbe2f5bdb5ff212fa196"
+    },
+    {
+      "path": "src/types/recommendation-shelves-create-response201.ts",
+      "sha256": "99d43c36bea36763b40b641306a8573cd76c59052f5b79d3a85ea15f644f864f"
     },
     {
       "path": "src/types/recommendation-shelves-management-list-response.ts",
-      "sha256": "a4e69acce852907f992fd83b97522aa97c2aff0d4c4a9ea5c098da7c5c0a69d5"
+      "sha256": "fd8ce1d3ab9253214768c6f4d2b0b7dc012f7af0bb679dbf95282ab0002ca0af"
+    },
+    {
+      "path": "src/types/releases-channels-create-response201.ts",
+      "sha256": "afa843fa9cd6fb3431b8f62b3d3ed6b91dfb5554e6b596c3e4d316842ce798ce"
     },
     {
       "path": "src/types/releases-list-response.ts",
-      "sha256": "109467565dff5d96a44ce2fc815dde59296e9a7093422914704ba7a69e4841c6"
+      "sha256": "eedb31599a44cd5f550e5e9af84583d709c3c7c5c6f33221e2a83c7e56f868d2"
+    },
+    {
+      "path": "src/types/rights-policies-create-response201.ts",
+      "sha256": "e94df9ec73ecef744e8fb46c3f8944ea9c9e9422dc1b0fdd100847d778d4f620"
     },
     {
       "path": "src/types/rights-policies-management-list-response.ts",
-      "sha256": "3ed582f7c894573d69ad1c3c24749eb59e654a7c394856cb6d30c2fa88ce9277"
+      "sha256": "ce3468548c0dee3a9d7aaef094b9dca4f144531a3b81dc221bee1157d0c3e96f"
+    },
+    {
+      "path": "src/types/rights-policies-territories-create-response201.ts",
+      "sha256": "01295f6f9ad85640df75a14bbc249b2d66e868ae5f0e3189a0000d571d1493b4"
+    },
+    {
+      "path": "src/types/sdk-work-api-response.ts",
+      "sha256": "79cef2c8e584ba8b8e96c6c77ccf6bda087b0c68cbed63cb97d5fb1ff3e47e1a"
+    },
+    {
+      "path": "src/types/sdk-work-command-data.ts",
+      "sha256": "a875c230e70650e636ac09c1af57ae8ea0f512a89dd21482bb9e6292bb6bad5a"
+    },
+    {
+      "path": "src/types/sdk-work-command-response.ts",
+      "sha256": "36f82aede9b7b352a9b57545705da4003816785c7913fb2436df633f5c2e8447"
+    },
+    {
+      "path": "src/types/sdk-work-list-response.ts",
+      "sha256": "eeb07e413d7e912345eda1cb1093e8e6abfe9b42d8350482f7b580138c7936c5"
+    },
+    {
+      "path": "src/types/sdk-work-page-data.ts",
+      "sha256": "b9f6e60cc3bc39eed4cdf6029a401cc88b6001e4f4c72703487f478001024743"
+    },
+    {
+      "path": "src/types/sdk-work-platform-error-code.ts",
+      "sha256": "f5e30be72be3d1aebd8200627bfac368f10cdd69d2271d24e6b4a2d7edf97fb7"
+    },
+    {
+      "path": "src/types/sdk-work-resource-data.ts",
+      "sha256": "f5a027b000a19c08d5b2560ae47fea43c83f4c5d7e85ad37faafe1e9177459cd"
+    },
+    {
+      "path": "src/types/sdk-work-resource-response.ts",
+      "sha256": "89c05f5549bef773335245f56f61ca1a6959978726799391d584a6bd25d12fdc"
+    },
+    {
+      "path": "src/types/tracks-archive-response.ts",
+      "sha256": "0d615ee41329b78c7112f045b3f0d3c01546a92c3e0a6cf38177d477db807ade"
+    },
+    {
+      "path": "src/types/tracks-create-response201.ts",
+      "sha256": "2c04369b9801931fdc31299c06c4cedf71ca678e0f82ae588b81f972cdfe7239"
     },
     {
       "path": "src/types/tracks-management-list-response.ts",
-      "sha256": "5899d8d88b9956c2d200b2cc8a4b30f280248b7f2c3ca6c66651d819c9411259"
+      "sha256": "baff0c1a0f4ccf76d2a835540a8dc0c77931044141fcfd2c7676431899d50fa9"
+    },
+    {
+      "path": "src/types/tracks-publish-response.ts",
+      "sha256": "1d67220f9fbab95f2f2ecb42b3714c6100919928d7c8f9a45e6477a31d6cb092"
     },
     {
       "path": "tsconfig.json",

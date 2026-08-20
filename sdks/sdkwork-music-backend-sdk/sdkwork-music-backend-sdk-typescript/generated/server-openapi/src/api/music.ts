@@ -1,7 +1,7 @@
 import { backendApiPath } from './paths';
-import type { HttpClient } from '../http/client';
+import type { ApiRequestOptions, HttpClient } from '../http/client';
 
-import type { AlbumsManagementListResponse, ArtistsManagementListResponse, AudioAssetsManagementListResponse, ChartsManagementListResponse, ContentReportsManagementListResponse, GenerationsAttemptsListResponse, GenerationsCreditLedgerListResponse, GenerationsEventsManagementListResponse, GenerationsManagementListResponse, GenerationsPromptTemplatesManagementListResponse, GenerationsProviderModelsManagementListResponse, GenerationsProvidersManagementListResponse, GenerationsStylePresetsManagementListResponse, ModerationSignalsListResponse, MusicAiGenerationModerationCommand, MusicAiGenerationProvider, MusicAiGenerationProviderCommand, MusicAiGenerationProviderEvent, MusicAiGenerationProviderEventCommand, MusicAiGenerationProviderModel, MusicAiGenerationProviderModelCommand, MusicAiGenerationPublishCommand, MusicAiGenerationTask, MusicAiGenerationTaskSyncCommand, MusicAiPromptTemplate, MusicAiPromptTemplateCommand, MusicAiStylePreset, MusicAiStylePresetCommand, MusicAlbum, MusicAlbumCommand, MusicArtist, MusicArtistCommand, MusicAudioAsset, MusicAudioAssetCommand, MusicChart, MusicChartCommand, MusicChartEntry, MusicChartEntryCommand, MusicContentReport, MusicContentReportResolutionCommand, MusicHomeShelf, MusicRecommendationShelfCommand, MusicRelease, MusicReleaseChannel, MusicReleaseChannelCommand, MusicRightsPolicy, MusicRightsPolicyCommand, MusicRightsTerritory, MusicRightsTerritoryCommand, MusicTrack, MusicTrackCommand, PlaylistsManagementListResponse, RecommendationFeedbackManagementListResponse, RecommendationShelvesManagementListResponse, ReleasesListResponse, RightsPoliciesManagementListResponse, TracksManagementListResponse } from '../types';
+import type { MusicAiGenerationCreditLedgerEntry, MusicAiGenerationModerationCommand, MusicAiGenerationProvider, MusicAiGenerationProviderAttempt, MusicAiGenerationProviderCommand, MusicAiGenerationProviderEvent, MusicAiGenerationProviderEventCommand, MusicAiGenerationProviderModel, MusicAiGenerationProviderModelCommand, MusicAiGenerationPublishCommand, MusicAiGenerationTask, MusicAiGenerationTaskSyncCommand, MusicAiPromptTemplate, MusicAiPromptTemplateCommand, MusicAiStylePreset, MusicAiStylePresetCommand, MusicAlbum, MusicAlbumCommand, MusicArtist, MusicArtistCommand, MusicAudioAsset, MusicAudioAssetCommand, MusicChart, MusicChartCommand, MusicChartEntry, MusicChartEntryCommand, MusicContentReport, MusicContentReportResolutionCommand, MusicHomeShelf, MusicModerationSignal, MusicPlaylist, MusicRecommendationFeedback, MusicRecommendationItem, MusicRecommendationShelfCommand, MusicRelease, MusicReleaseChannel, MusicReleaseChannelCommand, MusicRightsPolicy, MusicRightsPolicyCommand, MusicRightsTerritory, MusicRightsTerritoryCommand, MusicTrack, MusicTrackCommand, PageInfo } from '../types';
 
 
 export class MusicReleasesChannelsApi {
@@ -13,14 +13,14 @@ export class MusicReleasesChannelsApi {
 
 
 /** Music releases.channels.create */
-  async create(releaseId: string, body: MusicReleaseChannelCommand): Promise<MusicReleaseChannel> {
-    return this.client.post<MusicReleaseChannel>(backendApiPath(`/music/releases/${serializePathParameter(releaseId, { name: 'releaseId', style: 'simple', explode: false })}/channels`), body, undefined, undefined, 'application/json');
+  async create(releaseId: string, body: MusicReleaseChannelCommand, requestOptions?: ApiRequestOptions): Promise<MusicReleaseChannel> {
+    return this.client.request<MusicReleaseChannel>(backendApiPath(`/music/releases/${serializePathParameter(releaseId, { name: 'releaseId', style: 'simple', explode: false })}/channels`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
 export interface MusicReleasesListParams {
   status?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicReleasesApi {
@@ -34,12 +34,12 @@ export class MusicReleasesApi {
 
 
 /** Music releases.list */
-  async list(params?: MusicReleasesListParams): Promise<ReleasesListResponse> {
+  async list(params?: MusicReleasesListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicRelease[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
-      { name: 'page_size', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ReleasesListResponse>(appendQueryString(backendApiPath(`/music/releases`), query));
+    return this.client.request<{ items: MusicRelease[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/releases`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -47,7 +47,7 @@ export interface MusicModerationSignalsListParams {
   resourceType?: string;
   resourceId?: string;
   status?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicModerationSignalsApi {
@@ -59,23 +59,21 @@ export class MusicModerationSignalsApi {
 
 
 /** Music moderation.signals.list */
-  async list(params?: MusicModerationSignalsListParams): Promise<ModerationSignalsListResponse> {
+  async list(params?: MusicModerationSignalsListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicModerationSignal[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'resource_type', value: params?.resourceType, style: 'form', explode: true, allowReserved: false },
       { name: 'resource_id', value: params?.resourceId, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
-      { name: 'limit', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ModerationSignalsListResponse>(appendQueryString(backendApiPath(`/music/moderation/signals`), query));
+    return this.client.request<{ items: MusicModerationSignal[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/moderation/signals`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
 export class MusicModerationApi {
-  private client: HttpClient;
   public readonly signals: MusicModerationSignalsApi;
 
   constructor(client: HttpClient) {
-    this.client = client;
     this.signals = new MusicModerationSignalsApi(client);
   }
 
@@ -90,14 +88,14 @@ export class MusicRightsPoliciesTerritoriesApi {
 
 
 /** Music rights.policies.territories.create */
-  async create(policyId: string, body: MusicRightsTerritoryCommand): Promise<MusicRightsTerritory> {
-    return this.client.post<MusicRightsTerritory>(backendApiPath(`/music/rights/policies/${serializePathParameter(policyId, { name: 'policyId', style: 'simple', explode: false })}/territories`), body, undefined, undefined, 'application/json');
+  async create(policyId: string, body: MusicRightsTerritoryCommand, requestOptions?: ApiRequestOptions): Promise<MusicRightsTerritory> {
+    return this.client.request<MusicRightsTerritory>(backendApiPath(`/music/rights/policies/${serializePathParameter(policyId, { name: 'policyId', style: 'simple', explode: false })}/territories`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
 export interface MusicRightsPoliciesManagementListParams {
   status?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicRightsPoliciesManagementApi {
@@ -109,12 +107,12 @@ export class MusicRightsPoliciesManagementApi {
 
 
 /** Music rights.policies.management.list */
-  async list(params?: MusicRightsPoliciesManagementListParams): Promise<RightsPoliciesManagementListResponse> {
+  async list(params?: MusicRightsPoliciesManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicRightsPolicy[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
-      { name: 'page_size', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<RightsPoliciesManagementListResponse>(appendQueryString(backendApiPath(`/music/rights/policies`), query));
+    return this.client.request<{ items: MusicRightsPolicy[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/rights/policies`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -131,17 +129,15 @@ export class MusicRightsPoliciesApi {
 
 
 /** Music rights.policies.create */
-  async create(body: MusicRightsPolicyCommand): Promise<MusicRightsPolicy> {
-    return this.client.post<MusicRightsPolicy>(backendApiPath(`/music/rights/policies`), body, undefined, undefined, 'application/json');
+  async create(body: MusicRightsPolicyCommand, requestOptions?: ApiRequestOptions): Promise<MusicRightsPolicy> {
+    return this.client.request<MusicRightsPolicy>(backendApiPath(`/music/rights/policies`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
 export class MusicRightsApi {
-  private client: HttpClient;
   public readonly policies: MusicRightsPoliciesApi;
 
   constructor(client: HttpClient) {
-    this.client = client;
     this.policies = new MusicRightsPoliciesApi(client);
   }
 
@@ -156,8 +152,8 @@ export class MusicGenerationsWebhooksApi {
 
 
 /** Music generations.webhooks.receive */
-  async receive(providerCode: string, body: MusicAiGenerationProviderEventCommand): Promise<MusicAiGenerationProviderEvent> {
-    return this.client.post<MusicAiGenerationProviderEvent>(backendApiPath(`/music/generations/webhooks/${serializePathParameter(providerCode, { name: 'providerCode', style: 'simple', explode: false })}/events`), body, undefined, undefined, 'application/json');
+  async create(providerCode: string, body: MusicAiGenerationProviderEventCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiGenerationProviderEvent> {
+    return this.client.request<MusicAiGenerationProviderEvent>(backendApiPath(`/music/generations/webhooks/${serializePathParameter(providerCode, { name: 'providerCode', style: 'simple', explode: false })}/events`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -165,7 +161,7 @@ export interface MusicGenerationsEventsManagementListParams {
   generationId?: string;
   providerCode?: string;
   source?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicGenerationsEventsManagementApi {
@@ -177,30 +173,28 @@ export class MusicGenerationsEventsManagementApi {
 
 
 /** Music generations.events.management.list */
-  async list(params?: MusicGenerationsEventsManagementListParams): Promise<GenerationsEventsManagementListResponse> {
+  async list(params?: MusicGenerationsEventsManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicAiGenerationProviderEvent[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'generation_id', value: params?.generationId, style: 'form', explode: true, allowReserved: false },
       { name: 'provider_code', value: params?.providerCode, style: 'form', explode: true, allowReserved: false },
       { name: 'source', value: params?.source, style: 'form', explode: true, allowReserved: false },
-      { name: 'limit', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<GenerationsEventsManagementListResponse>(appendQueryString(backendApiPath(`/music/generations/events`), query));
+    return this.client.request<{ items: MusicAiGenerationProviderEvent[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/generations/events`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
 export class MusicGenerationsEventsApi {
-  private client: HttpClient;
   public readonly management: MusicGenerationsEventsManagementApi;
 
   constructor(client: HttpClient) {
-    this.client = client;
     this.management = new MusicGenerationsEventsManagementApi(client);
   }
 
 }
 
 export interface MusicGenerationsAttemptsListParams {
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicGenerationsAttemptsApi {
@@ -212,18 +206,18 @@ export class MusicGenerationsAttemptsApi {
 
 
 /** Music generations.attempts.list */
-  async list(generationId: string, params?: MusicGenerationsAttemptsListParams): Promise<GenerationsAttemptsListResponse> {
+  async list(generationId: string, params?: MusicGenerationsAttemptsListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicAiGenerationProviderAttempt[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
-      { name: 'page_size', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<GenerationsAttemptsListResponse>(appendQueryString(backendApiPath(`/music/generations/${serializePathParameter(generationId, { name: 'generationId', style: 'simple', explode: false })}/attempts`), query));
+    return this.client.request<{ items: MusicAiGenerationProviderAttempt[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/generations/${serializePathParameter(generationId, { name: 'generationId', style: 'simple', explode: false })}/attempts`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
 export interface MusicGenerationsProviderModelsManagementListParams {
   providerCode?: string;
   status?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicGenerationsProviderModelsManagementApi {
@@ -235,13 +229,13 @@ export class MusicGenerationsProviderModelsManagementApi {
 
 
 /** Music generations.providerModels.management.list */
-  async list(params?: MusicGenerationsProviderModelsManagementListParams): Promise<GenerationsProviderModelsManagementListResponse> {
+  async list(params?: MusicGenerationsProviderModelsManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicAiGenerationProviderModel[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'provider_code', value: params?.providerCode, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
-      { name: 'limit', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<GenerationsProviderModelsManagementListResponse>(appendQueryString(backendApiPath(`/music/generations/provider_models`), query));
+    return this.client.request<{ items: MusicAiGenerationProviderModel[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/generations/provider_models`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -256,14 +250,14 @@ export class MusicGenerationsProviderModelsApi {
 
 
 /** Music generations.providerModels.create */
-  async create(body: MusicAiGenerationProviderModelCommand): Promise<MusicAiGenerationProviderModel> {
-    return this.client.post<MusicAiGenerationProviderModel>(backendApiPath(`/music/generations/provider_models`), body, undefined, undefined, 'application/json');
+  async create(body: MusicAiGenerationProviderModelCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiGenerationProviderModel> {
+    return this.client.request<MusicAiGenerationProviderModel>(backendApiPath(`/music/generations/provider_models`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
 export interface MusicGenerationsProvidersManagementListParams {
   status?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicGenerationsProvidersManagementApi {
@@ -275,12 +269,12 @@ export class MusicGenerationsProvidersManagementApi {
 
 
 /** Music generations.providers.management.list */
-  async list(params?: MusicGenerationsProvidersManagementListParams): Promise<GenerationsProvidersManagementListResponse> {
+  async list(params?: MusicGenerationsProvidersManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicAiGenerationProvider[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
-      { name: 'page_size', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<GenerationsProvidersManagementListResponse>(appendQueryString(backendApiPath(`/music/generations/providers`), query));
+    return this.client.request<{ items: MusicAiGenerationProvider[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/generations/providers`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -295,13 +289,13 @@ export class MusicGenerationsProvidersApi {
 
 
 /** Music generations.providers.create */
-  async create(body: MusicAiGenerationProviderCommand): Promise<MusicAiGenerationProvider> {
-    return this.client.post<MusicAiGenerationProvider>(backendApiPath(`/music/generations/providers`), body, undefined, undefined, 'application/json');
+  async create(body: MusicAiGenerationProviderCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiGenerationProvider> {
+    return this.client.request<MusicAiGenerationProvider>(backendApiPath(`/music/generations/providers`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 
 /** Music generations.providers.update */
-  async update(providerId: string, body: MusicAiGenerationProviderCommand): Promise<MusicAiGenerationProvider> {
-    return this.client.patch<MusicAiGenerationProvider>(backendApiPath(`/music/generations/providers/${serializePathParameter(providerId, { name: 'providerId', style: 'simple', explode: false })}`), body, undefined, undefined, 'application/json');
+  async update(providerId: string, body: MusicAiGenerationProviderCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiGenerationProvider> {
+    return this.client.request<MusicAiGenerationProvider>(backendApiPath(`/music/generations/providers/${serializePathParameter(providerId, { name: 'providerId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -309,7 +303,7 @@ export interface MusicGenerationsManagementListParams {
   status?: string;
   userId?: string;
   providerCode?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicGenerationsManagementApi {
@@ -321,21 +315,21 @@ export class MusicGenerationsManagementApi {
 
 
 /** Music generations.management.list */
-  async list(params?: MusicGenerationsManagementListParams): Promise<GenerationsManagementListResponse> {
+  async list(params?: MusicGenerationsManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicAiGenerationTask[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
       { name: 'user_id', value: params?.userId, style: 'form', explode: true, allowReserved: false },
       { name: 'provider_code', value: params?.providerCode, style: 'form', explode: true, allowReserved: false },
-      { name: 'limit', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<GenerationsManagementListResponse>(appendQueryString(backendApiPath(`/music/generations`), query));
+    return this.client.request<{ items: MusicAiGenerationTask[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/generations`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
 export interface MusicGenerationsCreditLedgerListParams {
   userId?: string;
   generationId?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicGenerationsCreditLedgerApi {
@@ -347,19 +341,19 @@ export class MusicGenerationsCreditLedgerApi {
 
 
 /** Music generations.creditLedger.list */
-  async list(params?: MusicGenerationsCreditLedgerListParams): Promise<GenerationsCreditLedgerListResponse> {
+  async list(params?: MusicGenerationsCreditLedgerListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicAiGenerationCreditLedgerEntry[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'user_id', value: params?.userId, style: 'form', explode: true, allowReserved: false },
       { name: 'generation_id', value: params?.generationId, style: 'form', explode: true, allowReserved: false },
-      { name: 'limit', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<GenerationsCreditLedgerListResponse>(appendQueryString(backendApiPath(`/music/generations/credit_ledger`), query));
+    return this.client.request<{ items: MusicAiGenerationCreditLedgerEntry[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/generations/credit_ledger`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
 export interface MusicGenerationsPromptTemplatesManagementListParams {
   status?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicGenerationsPromptTemplatesManagementApi {
@@ -371,12 +365,12 @@ export class MusicGenerationsPromptTemplatesManagementApi {
 
 
 /** Music generations.promptTemplates.management.list */
-  async list(params?: MusicGenerationsPromptTemplatesManagementListParams): Promise<GenerationsPromptTemplatesManagementListResponse> {
+  async list(params?: MusicGenerationsPromptTemplatesManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicAiPromptTemplate[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
-      { name: 'page_size', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<GenerationsPromptTemplatesManagementListResponse>(appendQueryString(backendApiPath(`/music/generations/prompt_templates`), query));
+    return this.client.request<{ items: MusicAiPromptTemplate[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/generations/prompt_templates`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -391,19 +385,19 @@ export class MusicGenerationsPromptTemplatesApi {
 
 
 /** Music generations.promptTemplates.create */
-  async create(body: MusicAiPromptTemplateCommand): Promise<MusicAiPromptTemplate> {
-    return this.client.post<MusicAiPromptTemplate>(backendApiPath(`/music/generations/prompt_templates`), body, undefined, undefined, 'application/json');
+  async create(body: MusicAiPromptTemplateCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiPromptTemplate> {
+    return this.client.request<MusicAiPromptTemplate>(backendApiPath(`/music/generations/prompt_templates`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 
 /** Music generations.promptTemplates.update */
-  async update(templateId: string, body: MusicAiPromptTemplateCommand): Promise<MusicAiPromptTemplate> {
-    return this.client.patch<MusicAiPromptTemplate>(backendApiPath(`/music/generations/prompt_templates/${serializePathParameter(templateId, { name: 'templateId', style: 'simple', explode: false })}`), body, undefined, undefined, 'application/json');
+  async update(templateId: string, body: MusicAiPromptTemplateCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiPromptTemplate> {
+    return this.client.request<MusicAiPromptTemplate>(backendApiPath(`/music/generations/prompt_templates/${serializePathParameter(templateId, { name: 'templateId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
 export interface MusicGenerationsStylePresetsManagementListParams {
   status?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicGenerationsStylePresetsManagementApi {
@@ -415,12 +409,12 @@ export class MusicGenerationsStylePresetsManagementApi {
 
 
 /** Music generations.stylePresets.management.list */
-  async list(params?: MusicGenerationsStylePresetsManagementListParams): Promise<GenerationsStylePresetsManagementListResponse> {
+  async list(params?: MusicGenerationsStylePresetsManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicAiStylePreset[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
-      { name: 'page_size', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<GenerationsStylePresetsManagementListResponse>(appendQueryString(backendApiPath(`/music/generations/style_presets`), query));
+    return this.client.request<{ items: MusicAiStylePreset[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/generations/style_presets`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -435,13 +429,13 @@ export class MusicGenerationsStylePresetsApi {
 
 
 /** Music generations.stylePresets.create */
-  async create(body: MusicAiStylePresetCommand): Promise<MusicAiStylePreset> {
-    return this.client.post<MusicAiStylePreset>(backendApiPath(`/music/generations/style_presets`), body, undefined, undefined, 'application/json');
+  async create(body: MusicAiStylePresetCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiStylePreset> {
+    return this.client.request<MusicAiStylePreset>(backendApiPath(`/music/generations/style_presets`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 
 /** Music generations.stylePresets.update */
-  async update(presetId: string, body: MusicAiStylePresetCommand): Promise<MusicAiStylePreset> {
-    return this.client.patch<MusicAiStylePreset>(backendApiPath(`/music/generations/style_presets/${serializePathParameter(presetId, { name: 'presetId', style: 'simple', explode: false })}`), body, undefined, undefined, 'application/json');
+  async update(presetId: string, body: MusicAiStylePresetCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiStylePreset> {
+    return this.client.request<MusicAiStylePreset>(backendApiPath(`/music/generations/style_presets/${serializePathParameter(presetId, { name: 'presetId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -472,18 +466,18 @@ export class MusicGenerationsApi {
 
 
 /** Music generations.sync */
-  async sync(generationId: string, body: MusicAiGenerationTaskSyncCommand): Promise<MusicAiGenerationTask> {
-    return this.client.post<MusicAiGenerationTask>(backendApiPath(`/music/generations/${serializePathParameter(generationId, { name: 'generationId', style: 'simple', explode: false })}/sync`), body, undefined, undefined, 'application/json');
+  async sync(generationId: string, body: MusicAiGenerationTaskSyncCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiGenerationTask> {
+    return this.client.request<MusicAiGenerationTask>(backendApiPath(`/music/generations/${serializePathParameter(generationId, { name: 'generationId', style: 'simple', explode: false })}/sync`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 
 /** Music generations.moderate */
-  async moderate(generationId: string, body: MusicAiGenerationModerationCommand): Promise<MusicAiGenerationTask> {
-    return this.client.post<MusicAiGenerationTask>(backendApiPath(`/music/generations/${serializePathParameter(generationId, { name: 'generationId', style: 'simple', explode: false })}/moderate`), body, undefined, undefined, 'application/json');
+  async moderate(generationId: string, body: MusicAiGenerationModerationCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiGenerationTask> {
+    return this.client.request<MusicAiGenerationTask>(backendApiPath(`/music/generations/${serializePathParameter(generationId, { name: 'generationId', style: 'simple', explode: false })}/moderate`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 
 /** Music generations.publish */
-  async publish(generationId: string, body: MusicAiGenerationPublishCommand): Promise<MusicRelease> {
-    return this.client.post<MusicRelease>(backendApiPath(`/music/generations/${serializePathParameter(generationId, { name: 'generationId', style: 'simple', explode: false })}/publish`), body, undefined, undefined, 'application/json');
+  async publish(generationId: string, body: MusicAiGenerationPublishCommand, requestOptions?: ApiRequestOptions): Promise<MusicRelease> {
+    return this.client.request<MusicRelease>(backendApiPath(`/music/generations/${serializePathParameter(generationId, { name: 'generationId', style: 'simple', explode: false })}/publish`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -491,7 +485,7 @@ export interface MusicContentReportsManagementListParams {
   status?: string;
   resourceType?: string;
   resourceId?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicContentReportsManagementApi {
@@ -503,14 +497,14 @@ export class MusicContentReportsManagementApi {
 
 
 /** Music contentReports.management.list */
-  async list(params?: MusicContentReportsManagementListParams): Promise<ContentReportsManagementListResponse> {
+  async list(params?: MusicContentReportsManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicContentReport[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
       { name: 'resource_type', value: params?.resourceType, style: 'form', explode: true, allowReserved: false },
       { name: 'resource_id', value: params?.resourceId, style: 'form', explode: true, allowReserved: false },
-      { name: 'limit', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ContentReportsManagementListResponse>(appendQueryString(backendApiPath(`/music/content_reports`), query));
+    return this.client.request<{ items: MusicContentReport[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/content_reports`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -525,8 +519,8 @@ export class MusicContentReportsApi {
 
 
 /** Music contentReports.resolve */
-  async resolve(reportId: string, body: MusicContentReportResolutionCommand): Promise<MusicContentReport> {
-    return this.client.post<MusicContentReport>(backendApiPath(`/music/content_reports/${serializePathParameter(reportId, { name: 'reportId', style: 'simple', explode: false })}/resolve`), body, undefined, undefined, 'application/json');
+  async resolve(reportId: string, body: MusicContentReportResolutionCommand, requestOptions?: ApiRequestOptions): Promise<MusicContentReport> {
+    return this.client.request<MusicContentReport>(backendApiPath(`/music/content_reports/${serializePathParameter(reportId, { name: 'reportId', style: 'simple', explode: false })}/resolve`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -534,7 +528,7 @@ export interface MusicRecommendationFeedbackManagementListParams {
   itemType?: string;
   itemId?: string;
   feedbackType?: string;
-  limit?: number;
+  pageSize?: number;
 }
 
 export class MusicRecommendationFeedbackManagementApi {
@@ -546,23 +540,21 @@ export class MusicRecommendationFeedbackManagementApi {
 
 
 /** Music recommendation.feedback.management.list */
-  async list(params?: MusicRecommendationFeedbackManagementListParams): Promise<RecommendationFeedbackManagementListResponse> {
+  async list(params?: MusicRecommendationFeedbackManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicRecommendationFeedback[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'item_type', value: params?.itemType, style: 'form', explode: true, allowReserved: false },
       { name: 'item_id', value: params?.itemId, style: 'form', explode: true, allowReserved: false },
       { name: 'feedback_type', value: params?.feedbackType, style: 'form', explode: true, allowReserved: false },
-      { name: 'limit', value: params?.limit, style: 'form', explode: true, allowReserved: false },
+      { name: 'page_size', value: params?.pageSize, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<RecommendationFeedbackManagementListResponse>(appendQueryString(backendApiPath(`/music/recommendation/feedback`), query));
+    return this.client.request<{ items: MusicRecommendationFeedback[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/recommendation/feedback`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
 export class MusicRecommendationFeedbackApi {
-  private client: HttpClient;
   public readonly management: MusicRecommendationFeedbackManagementApi;
 
   constructor(client: HttpClient) {
-    this.client = client;
     this.management = new MusicRecommendationFeedbackManagementApi(client);
   }
 
@@ -582,12 +574,12 @@ export class MusicRecommendationShelvesManagementApi {
 
 
 /** Music recommendation.shelves.management.list */
-  async list(params?: MusicRecommendationShelvesManagementListParams): Promise<RecommendationShelvesManagementListResponse> {
+  async list(params?: MusicRecommendationShelvesManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicHomeShelf[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<RecommendationShelvesManagementListResponse>(appendQueryString(backendApiPath(`/music/recommendation/shelves`), query));
+    return this.client.request<{ items: MusicHomeShelf[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/recommendation/shelves`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -602,18 +594,16 @@ export class MusicRecommendationShelvesApi {
 
 
 /** Music recommendation.shelves.create */
-  async create(body: MusicRecommendationShelfCommand): Promise<MusicHomeShelf> {
-    return this.client.post<MusicHomeShelf>(backendApiPath(`/music/recommendation/shelves`), body, undefined, undefined, 'application/json');
+  async create(body: MusicRecommendationShelfCommand, requestOptions?: ApiRequestOptions): Promise<{ items: MusicRecommendationItem[]; pageInfo: PageInfo; }> {
+    return this.client.request<{ items: MusicRecommendationItem[]; pageInfo: PageInfo; }>(backendApiPath(`/music/recommendation/shelves`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'page' });
   }
 }
 
 export class MusicRecommendationApi {
-  private client: HttpClient;
   public readonly shelves: MusicRecommendationShelvesApi;
   public readonly feedback: MusicRecommendationFeedbackApi;
 
   constructor(client: HttpClient) {
-    this.client = client;
     this.shelves = new MusicRecommendationShelvesApi(client);
     this.feedback = new MusicRecommendationFeedbackApi(client);
   }
@@ -629,8 +619,8 @@ export class MusicChartsEntriesApi {
 
 
 /** Music charts.entries.create */
-  async create(chartId: string, body: MusicChartEntryCommand): Promise<MusicChartEntry> {
-    return this.client.post<MusicChartEntry>(backendApiPath(`/music/charts/${serializePathParameter(chartId, { name: 'chartId', style: 'simple', explode: false })}/entries`), body, undefined, undefined, 'application/json');
+  async create(chartId: string, body: MusicChartEntryCommand, requestOptions?: ApiRequestOptions): Promise<MusicChartEntry> {
+    return this.client.request<MusicChartEntry>(backendApiPath(`/music/charts/${serializePathParameter(chartId, { name: 'chartId', style: 'simple', explode: false })}/entries`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -648,12 +638,12 @@ export class MusicChartsManagementApi {
 
 
 /** Music charts.management.list */
-  async list(params?: MusicChartsManagementListParams): Promise<ChartsManagementListResponse> {
+  async list(params?: MusicChartsManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicChart[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ChartsManagementListResponse>(appendQueryString(backendApiPath(`/music/charts`), query));
+    return this.client.request<{ items: MusicChart[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/charts`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -670,13 +660,13 @@ export class MusicChartsApi {
 
 
 /** Music charts.create */
-  async create(body: MusicChartCommand): Promise<MusicChart> {
-    return this.client.post<MusicChart>(backendApiPath(`/music/charts`), body, undefined, undefined, 'application/json');
+  async create(body: MusicChartCommand, requestOptions?: ApiRequestOptions): Promise<MusicChart> {
+    return this.client.request<MusicChart>(backendApiPath(`/music/charts`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 
 /** Music charts.update */
-  async update(chartId: string, body: MusicChartCommand): Promise<MusicChart> {
-    return this.client.patch<MusicChart>(backendApiPath(`/music/charts/${serializePathParameter(chartId, { name: 'chartId', style: 'simple', explode: false })}`), body, undefined, undefined, 'application/json');
+  async update(chartId: string, body: MusicChartCommand, requestOptions?: ApiRequestOptions): Promise<MusicChart> {
+    return this.client.request<MusicChart>(backendApiPath(`/music/charts/${serializePathParameter(chartId, { name: 'chartId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'PATCH' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -694,12 +684,12 @@ export class MusicAudioAssetsManagementApi {
 
 
 /** Music audio.assets.management.list */
-  async list(params?: MusicAudioAssetsManagementListParams): Promise<AudioAssetsManagementListResponse> {
+  async list(params?: MusicAudioAssetsManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicAudioAsset[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<AudioAssetsManagementListResponse>(appendQueryString(backendApiPath(`/music/audio/assets`), query));
+    return this.client.request<{ items: MusicAudioAsset[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/audio/assets`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -714,17 +704,15 @@ export class MusicAudioAssetsApi {
 
 
 /** Music audio.assets.create */
-  async create(body: MusicAudioAssetCommand): Promise<MusicAudioAsset> {
-    return this.client.post<MusicAudioAsset>(backendApiPath(`/music/audio/assets`), body, undefined, undefined, 'application/json');
+  async create(body: MusicAudioAssetCommand, requestOptions?: ApiRequestOptions): Promise<MusicAudioAsset> {
+    return this.client.request<MusicAudioAsset>(backendApiPath(`/music/audio/assets`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
 export class MusicAudioApi {
-  private client: HttpClient;
   public readonly assets: MusicAudioAssetsApi;
 
   constructor(client: HttpClient) {
-    this.client = client;
     this.assets = new MusicAudioAssetsApi(client);
   }
 
@@ -744,21 +732,19 @@ export class MusicPlaylistsManagementApi {
 
 
 /** Music playlists.management.list */
-  async list(params?: MusicPlaylistsManagementListParams): Promise<PlaylistsManagementListResponse> {
+  async list(params?: MusicPlaylistsManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicPlaylist[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<PlaylistsManagementListResponse>(appendQueryString(backendApiPath(`/music/playlists`), query));
+    return this.client.request<{ items: MusicPlaylist[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/playlists`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
 export class MusicPlaylistsApi {
-  private client: HttpClient;
   public readonly management: MusicPlaylistsManagementApi;
 
   constructor(client: HttpClient) {
-    this.client = client;
     this.management = new MusicPlaylistsManagementApi(client);
   }
 
@@ -780,14 +766,14 @@ export class MusicTracksManagementApi {
 
 
 /** Music tracks.management.list */
-  async list(params?: MusicTracksManagementListParams): Promise<TracksManagementListResponse> {
+  async list(params?: MusicTracksManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicTrack[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'artist_id', value: params?.artistId, style: 'form', explode: true, allowReserved: false },
       { name: 'album_id', value: params?.albumId, style: 'form', explode: true, allowReserved: false },
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<TracksManagementListResponse>(appendQueryString(backendApiPath(`/music/tracks`), query));
+    return this.client.request<{ items: MusicTrack[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/tracks`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -802,18 +788,18 @@ export class MusicTracksApi {
 
 
 /** Music tracks.create */
-  async create(body: MusicTrackCommand): Promise<MusicTrack> {
-    return this.client.post<MusicTrack>(backendApiPath(`/music/tracks`), body, undefined, undefined, 'application/json');
+  async create(body: MusicTrackCommand, requestOptions?: ApiRequestOptions): Promise<MusicTrack> {
+    return this.client.request<MusicTrack>(backendApiPath(`/music/tracks`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 
 /** Music tracks.publish */
-  async publish(trackId: string): Promise<MusicTrack> {
-    return this.client.post<MusicTrack>(backendApiPath(`/music/tracks/${serializePathParameter(trackId, { name: 'trackId', style: 'simple', explode: false })}/publish`));
+  async publish(trackId: string, requestOptions?: ApiRequestOptions): Promise<MusicTrack> {
+    return this.client.request<MusicTrack>(backendApiPath(`/music/tracks/${serializePathParameter(trackId, { name: 'trackId', style: 'simple', explode: false })}/publish`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, sdkworkUnwrapKind: 'item' });
   }
 
 /** Music tracks.archive */
-  async archive(trackId: string): Promise<MusicTrack> {
-    return this.client.post<MusicTrack>(backendApiPath(`/music/tracks/${serializePathParameter(trackId, { name: 'trackId', style: 'simple', explode: false })}/archive`));
+  async archive(trackId: string, requestOptions?: ApiRequestOptions): Promise<MusicTrack> {
+    return this.client.request<MusicTrack>(backendApiPath(`/music/tracks/${serializePathParameter(trackId, { name: 'trackId', style: 'simple', explode: false })}/archive`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -832,13 +818,13 @@ export class MusicAlbumsManagementApi {
 
 
 /** Music albums.management.list */
-  async list(params?: MusicAlbumsManagementListParams): Promise<AlbumsManagementListResponse> {
+  async list(params?: MusicAlbumsManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicAlbum[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'artist_id', value: params?.artistId, style: 'form', explode: true, allowReserved: false },
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<AlbumsManagementListResponse>(appendQueryString(backendApiPath(`/music/albums`), query));
+    return this.client.request<{ items: MusicAlbum[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/albums`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -853,8 +839,8 @@ export class MusicAlbumsApi {
 
 
 /** Music albums.create */
-  async create(body: MusicAlbumCommand): Promise<MusicAlbum> {
-    return this.client.post<MusicAlbum>(backendApiPath(`/music/albums`), body, undefined, undefined, 'application/json');
+  async create(body: MusicAlbumCommand, requestOptions?: ApiRequestOptions): Promise<MusicAlbum> {
+    return this.client.request<MusicAlbum>(backendApiPath(`/music/albums`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -872,12 +858,12 @@ export class MusicArtistsManagementApi {
 
 
 /** Music artists.management.list */
-  async list(params?: MusicArtistsManagementListParams): Promise<ArtistsManagementListResponse> {
+  async list(params?: MusicArtistsManagementListParams, requestOptions?: ApiRequestOptions): Promise<{ items: MusicArtist[]; pageInfo: PageInfo; }> {
     const query = buildQueryString([
       { name: 'q', value: params?.q, style: 'form', explode: true, allowReserved: false },
       { name: 'status', value: params?.status, style: 'form', explode: true, allowReserved: false },
     ]);
-    return this.client.get<ArtistsManagementListResponse>(appendQueryString(backendApiPath(`/music/artists`), query));
+    return this.client.request<{ items: MusicArtist[]; pageInfo: PageInfo; }>(appendQueryString(backendApiPath(`/music/artists`), query), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'page' });
   }
 }
 
@@ -892,13 +878,12 @@ export class MusicArtistsApi {
 
 
 /** Music artists.create */
-  async create(body: MusicArtistCommand): Promise<MusicArtist> {
-    return this.client.post<MusicArtist>(backendApiPath(`/music/artists`), body, undefined, undefined, 'application/json');
+  async create(body: MusicArtistCommand, requestOptions?: ApiRequestOptions): Promise<MusicArtist> {
+    return this.client.request<MusicArtist>(backendApiPath(`/music/artists`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
   }
 }
 
 export class MusicApi {
-  private client: HttpClient;
   public readonly artists: MusicArtistsApi;
   public readonly albums: MusicAlbumsApi;
   public readonly tracks: MusicTracksApi;
@@ -913,7 +898,6 @@ export class MusicApi {
   public readonly releases: MusicReleasesApi;
 
   constructor(client: HttpClient) {
-    this.client = client;
     this.artists = new MusicArtistsApi(client);
     this.albums = new MusicAlbumsApi(client);
     this.tracks = new MusicTracksApi(client);

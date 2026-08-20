@@ -1,6 +1,8 @@
 {
   "name": "sdkwork-music-app-sdk-generated-typescript",
   "version": "0.1.0",
+  "private": true,
+  "sdkworkRole": "transport",
   "description": "Generator-owned TypeScript transport SDK for sdkwork-music-app-sdk.",
   "author": "SDKWork Team",
   "license": "MIT",
@@ -24,7 +26,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@sdkwork/sdk-common": "^1.0.5"
+    "@sdkwork/sdk-common": "^1.0.5",
+    "@sdkwork/utils": "^0.11.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
@@ -36,7 +39,5 @@
     "api",
     "app",
     "sdkwork"
-  ],
-  "private": true,
-  "sdkworkRole": "transport"
+  ]
 }

@@ -1,3 +1,9 @@
 import type { MusicAlbum } from './music-album';
+import type { PageInfo } from './page-info';
 
-export type AlbumsManagementListResponse = MusicAlbum[];
+export interface AlbumsManagementListResponse {
+  code: 0;
+  data: unknown & { items: MusicAlbum[]; pageInfo: PageInfo; };
+  /** Server-owned request correlation id. */
+  traceId: string;
+}

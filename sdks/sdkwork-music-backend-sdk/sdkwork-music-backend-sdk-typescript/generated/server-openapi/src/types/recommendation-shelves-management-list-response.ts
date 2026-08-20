@@ -1,3 +1,9 @@
 import type { MusicHomeShelf } from './music-home-shelf';
+import type { PageInfo } from './page-info';
 
-export type RecommendationShelvesManagementListResponse = MusicHomeShelf[];
+export interface RecommendationShelvesManagementListResponse {
+  code: 0;
+  data: unknown & { items: MusicHomeShelf[]; pageInfo: PageInfo; };
+  /** Server-owned request correlation id. */
+  traceId: string;
+}

@@ -1,25 +1,9 @@
 {
-  "schemaVersion": 1,
-  "sdkName": "sdkwork-music-backend-sdk",
+  "workspace": "sdkwork-music-backend-sdk",
   "sdkOwner": "sdkwork-music",
   "apiAuthority": "sdkwork-music-backend-api",
-  "sdkFamily": "sdkwork-music-backend-sdk",
-  "sdkType": "backend",
-  "apiPrefix": "/backend/v3/api",
+  "authoritySpec": "openapi/sdkwork-music-backend-api.openapi.json",
   "generationInputSpec": "openapi/sdkwork-music-backend-api.openapi.json",
-  "generatedPackages": {
-    "typescript": {
-      "language": "typescript",
-      "packageName": "sdkwork-music-backend-sdk-generated-typescript",
-      "generatedOutput": "sdkwork-music-backend-sdk-typescript/generated/server-openapi"
-    }
-  },
-  "generatorName": "@sdkwork/sdk-generator",
-  "generatorPath": "../sdkwork-sdk-generator/bin/sdkgen.js",
-  "baseUrl": "http://127.0.0.1:18080",
-  "standardProfile": "sdkwork-v3",
-  "fixedSdkVersion": "0.1.0",
-  "ownerOnlyOperationCount": 45,
   "sdkDependencies": [
     {
       "workspace": "cloudrouter-open-sdk",
@@ -50,6 +34,35 @@
       }
     }
   ],
+  "derivedSpecs": {
+    "default": "openapi/sdkwork-music-backend-api.openapi.json"
+  },
+  "discoverySurface": {
+    "sdkTarget": "backend",
+    "apiPrefix": "/backend/v3/api",
+    "generatedProtocols": [
+      "http-openapi"
+    ],
+    "manualTransports": []
+  },
+  "schemaVersion": 1,
+  "sdkName": "sdkwork-music-backend-sdk",
+  "sdkFamily": "sdkwork-music-backend-sdk",
+  "sdkType": "backend",
+  "apiPrefix": "/backend/v3/api",
+  "generatedPackages": {
+    "typescript": {
+      "language": "typescript",
+      "packageName": "sdkwork-music-backend-sdk-generated-typescript",
+      "generatedOutput": "sdkwork-music-backend-sdk-typescript/generated/server-openapi"
+    }
+  },
+  "generatorName": "@sdkwork/sdk-generator",
+  "generatorPath": "E:\\sdkwork-space\\sdkwork-sdk-generator\\bin\\sdkgen.js",
+  "baseUrl": "http://127.0.0.1:18080",
+  "standardProfile": "sdkwork-v3",
+  "fixedSdkVersion": "0.1.0",
+  "ownerOnlyOperationCount": 45,
   "operations": [
     {
       "method": "POST",
@@ -203,7 +216,7 @@
     },
     {
       "method": "POST",
-      "operationId": "generations.webhooks.receive",
+      "operationId": "generations.webhooks.create",
       "path": "/backend/v3/api/music/generations/webhooks/{providerCode}/events"
     },
     {
@@ -277,26 +290,5 @@
       "path": "/backend/v3/api/music/tracks/{trackId}/publish"
     }
   ],
-  "managedBy": "tools/music_sdk_generator_runner.mjs",
-  "packageName": "@sdkwork/music-backend-sdk",
-  "transportPackageName": "sdkwork-music-backend-sdk-generated-typescript",
-  "typescript": {
-    "composedRoot": "sdkwork-music-backend-sdk-typescript",
-    "composedEntry": "sdkwork-music-backend-sdk-typescript/src/index.ts",
-    "transportRoot": "sdkwork-music-backend-sdk-typescript/generated/server-openapi",
-    "transportEntry": "sdkwork-music-backend-sdk-typescript/generated/server-openapi/src/index.ts"
-  },
-  "workspace": "sdkwork-music-backend-sdk",
-  "authoritySpec": "openapi/sdkwork-music-backend-api.openapi.json",
-  "derivedSpecs": {
-    "default": "openapi/sdkwork-music-backend-api.openapi.json"
-  },
-  "discoverySurface": {
-    "sdkTarget": "backend",
-    "apiPrefix": "/backend/v3/api",
-    "generatedProtocols": [
-      "http-openapi"
-    ],
-    "manualTransports": []
-  }
+  "managedBy": "tools/music_sdk_generator_runner.mjs"
 }
