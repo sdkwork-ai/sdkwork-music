@@ -2,5 +2,5 @@ specVersion = 1
 kind = "sdkwork.webserver.server"
 id = "music"
 enabled = false
-description = "no public web surface declared in topology (missing specs/topology.spec.json)"
+description = "sdkwork-music webserver placeholder (no cloudPublicHosts in topology)"
 
