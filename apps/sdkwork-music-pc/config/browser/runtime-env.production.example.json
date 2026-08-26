@@ -1,6 +1,0 @@
-{
-  "apiBaseUrl": "https://api.sdkwork-music.com",
-  "appApiPrefix": "/app/v3/api",
-  "backendApiPrefix": "/backend/v3/api",
-  "environment": "production"
-}

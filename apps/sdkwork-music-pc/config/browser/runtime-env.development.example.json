@@ -1,6 +1,0 @@
-{
-  "apiBaseUrl": "http://127.0.0.1:18080",
-  "appApiPrefix": "/app/v3/api",
-  "backendApiPrefix": "/backend/v3/api",
-  "environment": "development"
-}

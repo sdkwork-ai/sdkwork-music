@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 3,
+  "kind": "sdkwork.app",
+  "app": {
+    "key": "sdkwork-music",
+    "name": "SDKWork Music",
+    "displayName": "SDKWork Music",
+    "description": "SDKWork Music application.",
+    "appType": "SDK"
+  },
+  "runtime": {
+    "family": "server",
+    "framework": "rust-service",
+    "defaultPlatform": "API",
+    "defaultArchitecture": "x64",
+    "supportedDeploymentProfiles": [
+      "standalone",
+      "cloud"
+    ],
+    "defaultDeploymentProfile": "standalone"
+  }
+}
