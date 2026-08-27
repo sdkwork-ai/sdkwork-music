@@ -290,5 +290,13 @@
       "path": "/backend/v3/api/music/tracks/{trackId}/publish"
     }
   ],
-  "managedBy": "tools/music_sdk_generator_runner.mjs"
+  "managedBy": "tools/music_sdk_generator_runner.mjs",
+  "packageName": "@sdkwork/music-backend-sdk",
+  "transportPackageName": "sdkwork-music-backend-sdk-generated-typescript",
+  "typescript": {
+    "composedRoot": "sdkwork-music-backend-sdk-typescript",
+    "composedEntry": "sdkwork-music-backend-sdk-typescript/src/index.ts",
+    "transportRoot": "sdkwork-music-backend-sdk-typescript/generated/server-openapi",
+    "transportEntry": "sdkwork-music-backend-sdk-typescript/generated/server-openapi/src/index.ts"
+  }
 }
