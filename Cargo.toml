@@ -39,3 +39,6 @@ sdkwork-music-storage-sqlx-rust = { path = "crates/sdkwork-music-storage-sqlx-ru
 # Cross-repository SDKWork dependencies
 sdkwork-drive-workspace-service = { path = "../sdkwork-drive/crates/sdkwork-drive-workspace-service" }
 sdkwork-drive-storage-contract = { path = "../sdkwork-drive/crates/sdkwork-drive-storage-contract" }
+
+sdkwork_web_bootstrap = { path = "../sdkwork-web-framework/crates/sdkwork-web-bootstrap", package = "sdkwork-web-bootstrap" }
+sdkwork_web_core = { path = "../sdkwork-web-framework/crates/sdkwork-web-core", package = "sdkwork-web-core" }

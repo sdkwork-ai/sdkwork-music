@@ -1,0 +1,9 @@
+{
+  "kind": "sdkwork.api.assembly",
+  "schemaVersion": 1,
+  "applicationCode": "music",
+  "apiMode": "none",
+  "packageName": "sdkwork-api-music-assembly",
+  "crateDir": "crates/sdkwork-api-music-assembly",
+  "routeCrates": []
+}
