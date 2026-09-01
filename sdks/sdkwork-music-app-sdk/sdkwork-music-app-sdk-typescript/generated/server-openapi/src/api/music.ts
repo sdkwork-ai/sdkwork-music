@@ -152,6 +152,10 @@ export interface MusicGenerationsListParams {
   pageSize?: number;
 }
 
+export interface MusicGenerationsCreateParams {
+  idempotencyKey: string;
+}
+
 export class MusicGenerationsApi {
   private client: HttpClient;
   public readonly stylePresets: MusicGenerationsStylePresetsApi;
@@ -182,14 +186,24 @@ export class MusicGenerationsApi {
   }
 
 /** Music generations.create */
-  async create(body: MusicAiGenerationTaskCommand, requestOptions?: ApiRequestOptions): Promise<MusicAiGenerationTask> {
-    return this.client.request<MusicAiGenerationTask>(appApiPath(`/music/generations`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
+  async create(body: MusicAiGenerationTaskCommand, params: MusicGenerationsCreateParams, requestOptions?: ApiRequestOptions): Promise<MusicAiGenerationTask> {
+    const requestHeaders = buildRequestHeaders(
+      {
+        'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
+      },
+      {}
+    );
+    return this.client.request<MusicAiGenerationTask>(appApiPath(`/music/generations`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 
 /** Music generations.retrieve */
   async retrieve(generationId: string, requestOptions?: ApiRequestOptions): Promise<MusicAiGenerationTask> {
     return this.client.request<MusicAiGenerationTask>(appApiPath(`/music/generations/${serializePathParameter(generationId, { name: 'generationId', style: 'simple', explode: false })}`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'GET' as any, sdkworkUnwrapKind: 'item' });
   }
+}
+
+export interface MusicPlayEventsCreateParams {
+  idempotencyKey: string;
 }
 
 export class MusicPlayEventsApi {
@@ -201,8 +215,14 @@ export class MusicPlayEventsApi {
 
 
 /** Music playEvents.create */
-  async create(body: MusicPlayEventCommand, requestOptions?: ApiRequestOptions): Promise<MusicListeningHistoryItem> {
-    return this.client.request<MusicListeningHistoryItem>(appApiPath(`/music/play_events`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
+  async create(body: MusicPlayEventCommand, params: MusicPlayEventsCreateParams, requestOptions?: ApiRequestOptions): Promise<MusicListeningHistoryItem> {
+    const requestHeaders = buildRequestHeaders(
+      {
+        'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
+      },
+      {}
+    );
+    return this.client.request<MusicListeningHistoryItem>(appApiPath(`/music/play_events`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -232,6 +252,10 @@ export interface MusicPlaybackSessionsListParams {
   pageSize?: number;
 }
 
+export interface MusicPlaybackSessionsCreateParams {
+  idempotencyKey: string;
+}
+
 export class MusicPlaybackSessionsApi {
   private client: HttpClient;
 
@@ -250,8 +274,14 @@ export class MusicPlaybackSessionsApi {
   }
 
 /** Music playback.sessions.create */
-  async create(body: MusicPlaybackSessionCommand, requestOptions?: ApiRequestOptions): Promise<MusicPlaybackSession> {
-    return this.client.request<MusicPlaybackSession>(appApiPath(`/music/playback/sessions`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
+  async create(body: MusicPlaybackSessionCommand, params: MusicPlaybackSessionsCreateParams, requestOptions?: ApiRequestOptions): Promise<MusicPlaybackSession> {
+    const requestHeaders = buildRequestHeaders(
+      {
+        'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
+      },
+      {}
+    );
+    return this.client.request<MusicPlaybackSession>(appApiPath(`/music/playback/sessions`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 
 /** Music playback.sessions.update */
@@ -301,6 +331,10 @@ export class MusicDownloadsApi {
 
 }
 
+export interface MusicRecommendationFeedbackCreateParams {
+  idempotencyKey: string;
+}
+
 export class MusicRecommendationFeedbackApi {
   private client: HttpClient;
 
@@ -310,8 +344,14 @@ export class MusicRecommendationFeedbackApi {
 
 
 /** Music recommendation.feedback.create */
-  async create(body: MusicRecommendationFeedbackCommand, requestOptions?: ApiRequestOptions): Promise<MusicRecommendationFeedback> {
-    return this.client.request<MusicRecommendationFeedback>(appApiPath(`/music/recommendation/feedback`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
+  async create(body: MusicRecommendationFeedbackCommand, params: MusicRecommendationFeedbackCreateParams, requestOptions?: ApiRequestOptions): Promise<MusicRecommendationFeedback> {
+    const requestHeaders = buildRequestHeaders(
+      {
+        'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
+      },
+      {}
+    );
+    return this.client.request<MusicRecommendationFeedback>(appApiPath(`/music/recommendation/feedback`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -324,6 +364,10 @@ export class MusicRecommendationApi {
 
 }
 
+export interface MusicContentReportsCreateParams {
+  idempotencyKey: string;
+}
+
 export class MusicContentReportsApi {
   private client: HttpClient;
 
@@ -333,8 +377,14 @@ export class MusicContentReportsApi {
 
 
 /** Music contentReports.create */
-  async create(body: MusicContentReportCommand, requestOptions?: ApiRequestOptions): Promise<MusicContentReport> {
-    return this.client.request<MusicContentReport>(appApiPath(`/music/content_reports`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
+  async create(body: MusicContentReportCommand, params: MusicContentReportsCreateParams, requestOptions?: ApiRequestOptions): Promise<MusicContentReport> {
+    const requestHeaders = buildRequestHeaders(
+      {
+        'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
+      },
+      {}
+    );
+    return this.client.request<MusicContentReport>(appApiPath(`/music/content_reports`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
@@ -342,6 +392,10 @@ export interface MusicCommentsListParams {
   resourceType: string;
   resourceId: string;
   pageSize?: number;
+}
+
+export interface MusicCommentsCreateParams {
+  idempotencyKey: string;
 }
 
 export class MusicCommentsApi {
@@ -363,14 +417,24 @@ export class MusicCommentsApi {
   }
 
 /** Music comments.create */
-  async create(body: MusicCommentCommand, requestOptions?: ApiRequestOptions): Promise<MusicComment> {
-    return this.client.request<MusicComment>(appApiPath(`/music/comments`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
+  async create(body: MusicCommentCommand, params: MusicCommentsCreateParams, requestOptions?: ApiRequestOptions): Promise<MusicComment> {
+    const requestHeaders = buildRequestHeaders(
+      {
+        'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
+      },
+      {}
+    );
+    return this.client.request<MusicComment>(appApiPath(`/music/comments`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 }
 
 export interface MusicLibraryItemsListParams {
   itemType?: string;
   pageSize?: number;
+}
+
+export interface MusicLibraryItemsCreateParams {
+  idempotencyKey: string;
 }
 
 export class MusicLibraryItemsApi {
@@ -391,8 +455,14 @@ export class MusicLibraryItemsApi {
   }
 
 /** Music library.items.create */
-  async create(body: MusicLibraryItemCommand, requestOptions?: ApiRequestOptions): Promise<MusicUserLibraryItem> {
-    return this.client.request<MusicUserLibraryItem>(appApiPath(`/music/library/items`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'item' });
+  async create(body: MusicLibraryItemCommand, params: MusicLibraryItemsCreateParams, requestOptions?: ApiRequestOptions): Promise<MusicUserLibraryItem> {
+    const requestHeaders = buildRequestHeaders(
+      {
+        'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
+      },
+      {}
+    );
+    return this.client.request<MusicUserLibraryItem>(appApiPath(`/music/library/items`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'item' });
   }
 
 /** Music library.items.delete */
@@ -488,6 +558,10 @@ export class MusicAudioApi {
 
 }
 
+export interface MusicPlaylistsFollowCreateParams {
+  idempotencyKey: string;
+}
+
 export class MusicPlaylistsFollowApi {
   private client: HttpClient;
 
@@ -497,14 +571,24 @@ export class MusicPlaylistsFollowApi {
 
 
 /** Music playlists.follow.create */
-  async create(playlistId: string, body: MusicPlaylistFollowCommand, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
-    return this.client.request<SdkWorkPageData>(appApiPath(`/music/playlists/${serializePathParameter(playlistId, { name: 'playlistId', style: 'simple', explode: false })}/follow`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'page' });
+  async create(playlistId: string, body: MusicPlaylistFollowCommand, params: MusicPlaylistsFollowCreateParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
+    const requestHeaders = buildRequestHeaders(
+      {
+        'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
+      },
+      {}
+    );
+    return this.client.request<SdkWorkPageData>(appApiPath(`/music/playlists/${serializePathParameter(playlistId, { name: 'playlistId', style: 'simple', explode: false })}/follow`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'page' });
   }
 
 /** Music playlists.follow.delete */
   async delete(playlistId: string, requestOptions?: ApiRequestOptions): Promise<void> {
     return this.client.request<void>(appApiPath(`/music/playlists/${serializePathParameter(playlistId, { name: 'playlistId', style: 'simple', explode: false })}/follow`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'DELETE' as any });
   }
+}
+
+export interface MusicPlaylistsTracksCreateParams {
+  idempotencyKey: string;
 }
 
 export class MusicPlaylistsTracksApi {
@@ -516,8 +600,14 @@ export class MusicPlaylistsTracksApi {
 
 
 /** Music playlists.tracks.create */
-  async create(playlistId: string, body: MusicPlaylistTrackCommand, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
-    return this.client.request<SdkWorkPageData>(appApiPath(`/music/playlists/${serializePathParameter(playlistId, { name: 'playlistId', style: 'simple', explode: false })}/tracks`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', sdkworkUnwrapKind: 'page' });
+  async create(playlistId: string, body: MusicPlaylistTrackCommand, params: MusicPlaylistsTracksCreateParams, requestOptions?: ApiRequestOptions): Promise<SdkWorkPageData> {
+    const requestHeaders = buildRequestHeaders(
+      {
+        'Idempotency-Key': { value: params.idempotencyKey, style: 'simple', explode: false },
+      },
+      {}
+    );
+    return this.client.request<SdkWorkPageData>(appApiPath(`/music/playlists/${serializePathParameter(playlistId, { name: 'playlistId', style: 'simple', explode: false })}/tracks`), { ...(requestOptions?.signal !== undefined ? { signal: requestOptions.signal } : {}), ...(requestOptions?.timeout !== undefined ? { timeout: requestOptions.timeout } : {}), method: 'POST' as any, body, contentType: 'application/json', ...(requestHeaders !== undefined ? { headers: requestHeaders } : {}), sdkworkUnwrapKind: 'page' });
   }
 
 /** Music playlists.tracks.delete */
@@ -985,4 +1075,79 @@ function encodeQueryValue(value: string, allowReserved: boolean): string {
     .replace(/%2C/gi, ',')
     .replace(/%3B/gi, ';')
     .replace(/%3D/gi, '=');
+}
+function buildRequestHeaders(
+  headers: Record<string, HeaderParameterSpec | undefined>,
+  cookies: Record<string, HeaderParameterSpec | undefined> = {},
+): Record<string, string> | undefined {
+  const requestHeaders: Record<string, string> = {};
+
+  for (const [name, parameter] of Object.entries(headers)) {
+    const serialized = serializeParameterValue(parameter);
+    if (serialized !== undefined) {
+      requestHeaders[name] = serialized;
+    }
+  }
+
+  const cookieHeader = buildCookieHeader(cookies);
+  if (cookieHeader) {
+    requestHeaders.Cookie = requestHeaders.Cookie
+      ? `${requestHeaders.Cookie}; ${cookieHeader}`
+      : cookieHeader;
+  }
+
+  return Object.keys(requestHeaders).length > 0 ? requestHeaders : undefined;
+}
+
+interface HeaderParameterSpec {
+  value: unknown;
+  style: string;
+  explode: boolean;
+  contentType?: string;
+}
+
+function buildCookieHeader(cookies: Record<string, HeaderParameterSpec | undefined>): string | undefined {
+  const pairs: string[] = [];
+  for (const [name, parameter] of Object.entries(cookies)) {
+    const serialized = serializeParameterValue(parameter);
+    if (serialized !== undefined) {
+      pairs.push(`${encodeURIComponent(name)}=${encodeURIComponent(serialized)}`);
+    }
+  }
+  return pairs.length > 0 ? pairs.join('; ') : undefined;
+}
+
+function serializeParameterValue(parameter: HeaderParameterSpec | undefined): string | undefined {
+  const value = parameter?.value;
+  if (value === undefined || value === null) {
+    return undefined;
+  }
+  if (parameter?.contentType) {
+    return JSON.stringify(value);
+  }
+  if (value instanceof Date) {
+    return value.toISOString();
+  }
+  if (Array.isArray(value)) {
+    return value.map((item) => serializeHeaderPrimitive(item)).join(',');
+  }
+  if (typeof value === 'object' && value !== null) {
+    return serializeHeaderObject(value as Record<string, unknown>, parameter?.explode === true);
+  }
+  return serializeHeaderPrimitive(value);
+}
+
+function serializeHeaderObject(value: Record<string, unknown>, explode: boolean): string {
+  const entries = Object.entries(value).filter(([, entryValue]) => entryValue !== undefined && entryValue !== null);
+  if (explode) {
+    return entries.map(([key, entryValue]) => `${key}=${serializeHeaderPrimitive(entryValue)}`).join(',');
+  }
+  return entries.flatMap(([key, entryValue]) => [key, serializeHeaderPrimitive(entryValue)]).join(',');
+}
+
+function serializeHeaderPrimitive(value: unknown): string {
+  if (value instanceof Date) {
+    return value.toISOString();
+  }
+  return String(value);
 }

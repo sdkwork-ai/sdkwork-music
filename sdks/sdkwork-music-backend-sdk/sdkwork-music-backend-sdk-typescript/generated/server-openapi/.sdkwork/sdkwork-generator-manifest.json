@@ -60,7 +60,7 @@
     },
     {
       "path": "src/api/music.ts",
-      "sha256": "8f69d902cfc5cfbc31a17e462582885c9ccb101f4eb46494acafd82bf969e20f"
+      "sha256": "d32f4e70f51df34b2f312c1f7ee49a7830bf6d404fa74b64b106a030016368a4"
     },
     {
       "path": "src/api/paths.ts",
@@ -608,7 +608,7 @@
     },
     {
       "path": "tsconfig.json",
-      "sha256": "7c8a6c2b00fb208ec28e1e6045194487d1b3e563d6c44cef4783fd4fe0e8ffad"
+      "sha256": "35f6f0baf03ca4245339f0a532b02c6b0c8e64d66852a2f77d38ae063b2024b8"
     }
   ],
   "scaffoldFiles": [
