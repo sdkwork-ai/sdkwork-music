@@ -212,7 +212,6 @@ fn music_storage_repositories_bind_to_music_tables() {
 
 #[tokio::test]
 async fn generated_artifact_archive_uses_drive_ai_space_and_completes_audio_variants() {
-
     let object_store = RecordingDriveObjectStore::new();
     let drive_store = InMemoryDriveUploaderStore::new();
     let archive_service = MusicGeneratedArtifactArchiveService::with_object_store(

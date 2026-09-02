@@ -709,7 +709,6 @@ where
     }
 }
 
-
 pub fn music_database_tables() -> Vec<&'static str> {
     vec![
         "music_artist",
@@ -1374,4 +1373,3 @@ fn drive_object_store_error(error: DriveObjectStoreError) -> DriveServiceError {
         | DriveObjectStoreErrorKind::Internal => DriveServiceError::Internal(error.message),
     }
 }
-
