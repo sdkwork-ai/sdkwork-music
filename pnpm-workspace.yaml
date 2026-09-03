@@ -1,4 +1,5 @@
 packages:
+  - "../sdkwork-assets/sdks/sdkwork-assets-app-sdk/sdkwork-assets-app-sdk-typescript"
   - "apps/sdkwork-music-common/packages/*"
   - "apps/sdkwork-music-pc"
   - "apps/sdkwork-music-pc/packages/*"
