@@ -38,19 +38,19 @@
   },
   "environments": {
     "development": {
-      "cloudApiBaseUrl": "https://api-dev.sdkwork.com;https://api-dev.birdcoder.com;https://api-dev.dtupay.com;https://api-dev.noaper.com;https://api-dev.skubc.com;https://api-dev.zowalk.com;https://api-dev.offer86.com;https://api-dev.86offer.com"
+      "cloudApiBaseUrl": "https://api-dev.sdkwork.com"
     },
     "test": {
-      "cloudApiBaseUrl": "https://api-test.sdkwork.com;https://api-test.birdcoder.com;https://api-test.dtupay.com;https://api-test.noaper.com;https://api-test.skubc.com;https://api-test.zowalk.com;https://api-test.offer86.com;https://api-test.86offer.com"
+      "cloudApiBaseUrl": "https://api-test.sdkwork.com"
     },
     "staging": {
-      "cloudApiBaseUrl": "https://api-staging.sdkwork.com;https://api-staging.birdcoder.com;https://api-staging.dtupay.com;https://api-staging.noaper.com;https://api-staging.skubc.com;https://api-staging.zowalk.com;https://api-staging.offer86.com;https://api-staging.86offer.com"
+      "cloudApiBaseUrl": "https://api-staging.sdkwork.com"
     },
     "production": {
-      "cloudApiBaseUrl": "https://api.sdkwork.com;https://api.birdcoder.com;https://api.dtupay.com;https://api.noaper.com;https://api.skubc.com;https://api.zowalk.com;https://api.offer86.com;https://api.86offer.com"
+      "cloudApiBaseUrl": "https://api.sdkwork.com"
     },
     "demo": {
-      "cloudApiBaseUrl": "https://api-demo.sdkwork.com;https://api-demo.birdcoder.com;https://api-demo.dtupay.com;https://api-demo.noaper.com;https://api-demo.skubc.com;https://api-demo.zowalk.com;https://api-demo.offer86.com;https://api-demo.86offer.com"
+      "cloudApiBaseUrl": "https://api-demo.sdkwork.com"
     }
   }
 }
