@@ -1209,6 +1209,9 @@ importers:
       '@sdkwork/music-app-sdk':
         specifier: workspace:*
         version: link:../../sdks/sdkwork-music-app-sdk/sdkwork-music-app-sdk-typescript
+      '@sdkwork/sdk-common':
+        specifier: workspace:*
+        version: link:../../../sdkwork-sdk-commons/sdkwork-sdk-common-typescript
       react:
         specifier: ^19.2.4
         version: 19.2.4
