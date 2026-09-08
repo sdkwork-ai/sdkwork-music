@@ -1,7 +1,11 @@
 import { createClient, type SdkworkAppClient } from '@sdkwork/music-app-sdk';
+import { resolveBaseUrl } from '@sdkwork/sdk-common';
 import type { MusicHomeShelf } from '../types/music';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:18080';
+// Prefer an explicit Vite override; otherwise resolve the shared
+// SDKWORK_API_BASE_URL through @sdkwork/sdk-common (env + brand + protocol
+// aware), eliminating the hardcoded localhost default.
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || resolveBaseUrl().url;
 
 let musicClient: SdkworkAppClient | null = null;
 

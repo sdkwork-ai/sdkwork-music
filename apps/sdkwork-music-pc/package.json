@@ -26,7 +26,8 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^6.30.4",
-    "@sdkwork/music-app-sdk": "workspace:*"
+    "@sdkwork/music-app-sdk": "workspace:*",
+    "@sdkwork/sdk-common": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
