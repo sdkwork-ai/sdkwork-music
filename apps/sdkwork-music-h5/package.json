@@ -23,7 +23,8 @@
     "@capacitor/haptics": "^6.0.0",
     "@capacitor/keyboard": "^6.0.0",
     "@capacitor/status-bar": "^6.0.0",
-    "@sdkwork/music-app-sdk": "workspace:*"
+    "@sdkwork/music-app-sdk": "workspace:*",
+    "@sdkwork/sdk-common": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
