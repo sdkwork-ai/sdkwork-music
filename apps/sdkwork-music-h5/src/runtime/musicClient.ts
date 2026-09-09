@@ -1,11 +1,12 @@
 import { createClient, type SdkworkAppClient } from '@sdkwork/music-app-sdk';
-import { resolveBaseUrl } from '@sdkwork/sdk-common';
+import { resolveBaseUrlWithAlignProtocol } from '@sdkwork/sdk-common';
 import type { MusicHomeShelf } from '../types/music';
 
-// Prefer an explicit Vite build-time override; otherwise resolve the API base
-// url through @sdkwork/sdk-common (env + brand + protocol aware), eliminating
-// the hardcoded localhost default.
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || resolveBaseUrl().url;
+// Single-call §6.3 resolution: the explicit Vite override wins as a candidate
+// and the returned origin always follows the page scheme.
+const API_BASE_URL = resolveBaseUrlWithAlignProtocol({
+  baseUrls: import.meta.env.VITE_API_BASE_URL || undefined,
+}).url;
 
 let musicClient: SdkworkAppClient | null = null;
 
