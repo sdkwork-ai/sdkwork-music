@@ -1,9 +1,13 @@
 [package]
+rust-version.workspace = true
 name = "sdkwork-music-generation-provider-adapter"
 version.workspace = true
 edition.workspace = true
 description = "Generated SDK adapter for SDKWork music generation."
 
+
+[lints]
+workspace = true
 [dependencies]
 async-trait.workspace = true
 cloudrouter-open-sdk.workspace = true

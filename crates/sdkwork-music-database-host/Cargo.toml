@@ -1,10 +1,14 @@
 [package]
+rust-version.workspace = true
 name = "sdkwork-music-database-host"
 edition = "2021"
 license = "SEE LICENSE IN LICENSE"
 version = "0.1.0"
 description = "SDKWork Music database lifecycle bootstrap."
 
+
+[lints]
+workspace = true
 [lib]
 name = "sdkwork_music_database_host"
 path = "src/lib.rs"

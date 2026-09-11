@@ -1,9 +1,13 @@
 [package]
+rust-version.workspace = true
 name = "sdkwork-music-generation-service"
 version.workspace = true
 edition.workspace = true
 description = "Unified SDKWork music generation service entrypoint."
 
+
+[lints]
+workspace = true
 [dependencies]
 async-trait.workspace = true
 sdkwork-music-generation-provider-spi.workspace = true
