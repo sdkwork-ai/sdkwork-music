@@ -23,6 +23,7 @@
     "build:prod:cloud": "node ../../../sdkwork-specs/tools/build-browser-client.mjs --app-root . --environment prod --deployment-profile cloud"
   },
   "dependencies": {
+    "@sdkwork/iam-credential-entry": "workspace:*",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^6.30.4",
