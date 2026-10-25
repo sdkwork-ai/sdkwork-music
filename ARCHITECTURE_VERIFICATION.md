@@ -51,7 +51,7 @@ June 14, 2026
 | Component | Status | File |
 |-----------|--------|------|
 | AGENTS.md | ✅ | `apps/sdkwork-music-pc/AGENTS.md` |
-| sdkwork.app.config.json | ✅ | `apps/sdkwork-music-pc/sdkwork.app.config.json` |
+| agent.app.config.json | ✅ | `apps/sdkwork-music-pc/agent.app.config.json` |
 | package.json | ✅ | `apps/sdkwork-music-pc/package.json` |
 | README.md | ✅ | `apps/sdkwork-music-pc/README.md` |
 | .sdkwork/README.md | ✅ | `apps/sdkwork-music-pc/.sdkwork/README.md` |
@@ -77,7 +77,7 @@ June 14, 2026
 | Component | Status | File |
 |-----------|--------|------|
 | AGENTS.md | ✅ | `apps/sdkwork-music-h5/AGENTS.md` |
-| sdkwork.app.config.json | ✅ | `apps/sdkwork-music-h5/sdkwork.app.config.json` |
+| agent.app.config.json | ✅ | `apps/sdkwork-music-h5/agent.app.config.json` |
 | package.json | ✅ | `apps/sdkwork-music-h5/package.json` |
 | README.md | ✅ | `apps/sdkwork-music-h5/README.md` |
 | .sdkwork/README.md | ✅ | `apps/sdkwork-music-h5/.sdkwork/README.md` |
@@ -106,7 +106,7 @@ June 14, 2026
 | Component | Status | File |
 |-----------|--------|------|
 | AGENTS.md | ✅ | `apps/sdkwork-music-flutter-mobile/AGENTS.md` |
-| sdkwork.app.config.json | ✅ | `apps/sdkwork-music-flutter-mobile/sdkwork.app.config.json` |
+| agent.app.config.json | ✅ | `apps/sdkwork-music-flutter-mobile/agent.app.config.json` |
 | pubspec.yaml | ✅ | `apps/sdkwork-music-flutter-mobile/pubspec.yaml` |
 | README.md | ✅ | `apps/sdkwork-music-flutter-mobile/README.md` |
 | .sdkwork/README.md | ✅ | `apps/sdkwork-music-flutter-mobile/.sdkwork/README.md` |
@@ -156,9 +156,9 @@ June 14, 2026
 
 | Application | Manifest | Schema Version |
 |-------------|----------|----------------|
-| PC | `sdkwork.app.config.json` | v2 |
-| H5 | `sdkwork.app.config.json` | v2 |
-| Flutter | `sdkwork.app.config.json` | v2 |
+| PC | `agent.app.config.json` | v2 |
+| H5 | `agent.app.config.json` | v2 |
+| Flutter | `agent.app.config.json` | v2 |
 
 ### 4.2 Environment Bindings
 

@@ -95,11 +95,11 @@ Three application surfaces have been created following SDKWork standards:
 
 ### 2.1 Application Manifests
 
-Each application surface has its own `sdkwork.app.config.json`:
+Each application surface has its own `agent.app.config.json`:
 
-- **PC:** `apps/sdkwork-music-pc/sdkwork.app.config.json`
-- **H5:** `apps/sdkwork-music-h5/sdkwork.app.config.json`
-- **Flutter:** `apps/sdkwork-music-flutter-mobile/sdkwork.app.config.json`
+- **PC:** `apps/sdkwork-music-pc/agent.app.config.json`
+- **H5:** `apps/sdkwork-music-h5/agent.app.config.json`
+- **Flutter:** `apps/sdkwork-music-flutter-mobile/agent.app.config.json`
 
 ### 2.2 Agent Configuration
 

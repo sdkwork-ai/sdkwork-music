@@ -1,11 +1,11 @@
 {
   "schemaVersion": 3,
-  "kind": "sdkwork.app",
+  "kind": "agent.app",
   "app": {
-    "key": "app-g7r3fj",
-    "name": "App G7r3fj",
-    "displayName": "App G7r3fj",
-    "officialWebsiteUrl": "https://sdkwork.com/apps/app-g7r3fj",
+    "key": "app-mrzwat",
+    "name": "App Mrzwat",
+    "displayName": "App Mrzwat",
+    "officialWebsiteUrl": "https://sdkwork.com/apps/app-mrzwat",
     "appType": "APP_HTML"
   },
   "backend": {
@@ -16,23 +16,26 @@
   },
   "runtime": {
     "family": "mobile",
-    "framework": "flutter",
+    "framework": "react",
+    "renderer": "browser",
     "platforms": [
-      "APP_IOS",
-      "APP_ANDROID"
+      "WEB",
+      "IOS",
+      "ANDROID"
     ],
     "supportedDeploymentProfiles": [
+      "cloud",
       "standalone"
     ],
-    "defaultDeploymentProfile": "standalone"
+    "defaultDeploymentProfile": "cloud"
   },
   "media": {
     "icons": {
       "primary": {
-        "id": "app-g7r3fj-primary-icon",
+        "id": "app-mrzwat-primary-icon",
         "type": "ICON",
         "purpose": "PRIMARY",
-        "url": "https://cdn.sdkwork.com/apps/app-g7r3fj/assets/icon-1024.png",
+        "url": "https://cdn.sdkwork.com/apps/app-mrzwat/assets/icon-1024.png",
         "platform": "APP",
         "locale": "en-US",
         "width": 1024,
@@ -53,10 +56,10 @@
     },
     "screenshots": [
       {
-        "id": "app-g7r3fj-web-screenshot",
+        "id": "app-mrzwat-web-screenshot",
         "type": "SCREENSHOT",
         "purpose": "CATALOG_SCREENSHOT",
-        "url": "https://cdn.sdkwork.com/apps/app-g7r3fj/media/web-screenshot.png",
+        "url": "https://cdn.sdkwork.com/apps/app-mrzwat/media/web-screenshot.png",
         "platform": "WEB",
         "locale": "en-US",
         "deviceClass": "BROWSER",
@@ -66,21 +69,21 @@
         "format": "PNG",
         "fileSizeBytes": 1048576,
         "alphaChannel": false,
-        "caption": "App G7r3fj product screenshot.",
+        "caption": "App Mrzwat product screenshot.",
         "sortOrder": 0,
         "enabled": true,
         "metadata": {
           "generatedPlaceholder": true,
-          "altText": "App G7r3fj app screenshot."
+          "altText": "App Mrzwat app screenshot."
         }
       }
     ],
     "previews": [
       {
-        "id": "app-g7r3fj-catalog-preview",
+        "id": "app-mrzwat-catalog-preview",
         "type": "PREVIEW_IMAGE",
         "purpose": "CATALOG_PREVIEW",
-        "url": "https://cdn.sdkwork.com/apps/app-g7r3fj/media/preview-cover.png",
+        "url": "https://cdn.sdkwork.com/apps/app-mrzwat/media/preview-cover.png",
         "platform": "WEB",
         "locale": "en-US",
         "width": 1600,
@@ -88,12 +91,12 @@
         "format": "PNG",
         "fileSizeBytes": 786432,
         "alphaChannel": false,
-        "caption": "App G7r3fj preview.",
+        "caption": "App Mrzwat preview.",
         "sortOrder": 0,
         "enabled": true,
         "metadata": {
           "generatedPlaceholder": true,
-          "altText": "App G7r3fj preview cover."
+          "altText": "App Mrzwat preview cover."
         }
       }
     ],
@@ -104,39 +107,59 @@
   },
   "publish": {
     "platforms": [
+      "WEB",
       "APP_IOS",
       "APP_ANDROID"
     ],
-    "artifactPrefix": "sdkwork-music-flutter-mobile",
+    "artifactPrefix": "sdkwork-music-h5",
     "status": "ACTIVE",
     "installPlatforms": [
+      "WEB",
       "APP_IOS",
       "APP_ANDROID"
     ],
-    "defaultPackageId": "linux-x64-standalone-server-tar-gz",
+    "defaultPackageId": "linux-x64-cloud-server-tar-gz",
     "installSkill": {
       "name": "sdkwork-skills-app"
     },
     "stores": [],
-    "storeUrl": "https://sdkwork.com/apps/app-g7r3fj"
+    "storeUrl": "https://sdkwork.com/apps/app-mrzwat"
   },
   "artifacts": {
     "installConfig": {
-      "defaultPackageId": "linux-x64-standalone-server-tar-gz",
-      "installCommand": "sdkwork install app-g7r3fj",
-      "launchCommand": "sdkwork open app-g7r3fj",
-      "uninstallCommand": "sdkwork uninstall app-g7r3fj",
+      "defaultPackageId": "linux-x64-cloud-server-tar-gz",
+      "installCommand": "sdkwork install app-mrzwat",
+      "launchCommand": "sdkwork open app-mrzwat",
+      "uninstallCommand": "sdkwork uninstall app-mrzwat",
       "packages": [
         {
-          "id": "linux-x64-standalone-server-tar-gz",
-          "name": "App G7r3fj standalone server archive",
+          "id": "linux-x64-cloud-server-tar-gz",
+          "name": "App Mrzwat cloud server archive",
           "sourceType": "BINARY_URL",
           "packageFormat": "TAR_GZ",
           "platform": "API",
-          "url": "https://cdn.sdkwork.com/apps/app-g7r3fj/STABLE/0.1.0/linux-x64-standalone-server-tar-gz-0.1.0.tar.gz",
+          "url": "https://cdn.sdkwork.com/apps/app-mrzwat/STABLE/0.1.0/linux-x64-cloud-server-tar-gz-0.1.0.tar.gz",
           "architecture": "x64",
           "checksumAlgorithm": "SHA-256",
-          "checksum": "190344f62ebed764d2f1e7bbc2822c0b9cbda30b6f7db2fc586bbc21bceb656a",
+          "checksum": "8081d131ca61c7ffee0e82293573c0e9f7e8a878caba9948efd66a887b8615ec",
+          "deploymentProfile": "cloud",
+          "runtimeTarget": "server",
+          "profileBinding": "fixed",
+          "enabled": true,
+          "metadata": {
+            "releaseBuildDeferred": false
+          }
+        },
+        {
+          "id": "linux-x64-standalone-server-tar-gz",
+          "name": "App Mrzwat standalone server archive",
+          "sourceType": "BINARY_URL",
+          "packageFormat": "TAR_GZ",
+          "platform": "API",
+          "url": "https://cdn.sdkwork.com/apps/app-mrzwat/STABLE/0.1.0/linux-x64-standalone-server-tar-gz-0.1.0.tar.gz",
+          "architecture": "x64",
+          "checksumAlgorithm": "SHA-256",
+          "checksum": "ae14c58d395774fb7deabbbb0f36943c29e413e7b9fceec1d3fd5e5645cf5f95",
           "deploymentProfile": "standalone",
           "runtimeTarget": "server",
           "profileBinding": "fixed",
@@ -158,15 +181,16 @@
       {
         "version": "0.1.0",
         "releaseChannel": "STABLE",
-        "title": "App G7r3fj 0.1.0",
-        "summary": "App G7r3fj initialized standard release.",
-        "content": "Initial SDKWork App Standard v3 manifest for App G7r3fj.",
+        "title": "App Mrzwat 0.1.0",
+        "summary": "App Mrzwat initialized standard release.",
+        "content": "Initial SDKWork App Standard v3 manifest for App Mrzwat.",
         "highlights": [
           "SDKWork App Standard v3 configuration initialized",
           "platform_app projection metadata standardized",
           "Download package matrix normalized"
         ],
         "packageIds": [
+          "linux-x64-cloud-server-tar-gz",
           "linux-x64-standalone-server-tar-gz"
         ],
         "publishedAt": "2026-05-07T00:00:00Z",
@@ -185,13 +209,17 @@
   "devApp": {
     "build": {
       "targets": {
+        "web": {
+          "command": "pnpm build",
+          "output": "dist"
+        },
         "ios": {
-          "command": "flutter build ios",
-          "output": "build/ios/iphoneos/Runner.app"
+          "command": "pnpm build:ios",
+          "output": "ios/App/App/Info.plist"
         },
         "android": {
-          "command": "flutter build apk",
-          "output": "build/app/outputs/flutter-apk/app-release.apk"
+          "command": "pnpm build:android",
+          "output": "android/app/build/outputs/apk"
         }
       }
     }

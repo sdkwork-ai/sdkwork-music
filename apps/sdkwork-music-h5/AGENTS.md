@@ -27,7 +27,7 @@ This is the H5 application root for SDKWork Music. It follows `APP_H5_ARCHITECTU
 ## Local Dictionary Structure
 
 - `AGENTS.md`: local agent entrypoint and relative SDKWORK spec index.
-- `sdkwork.app.config.json`: application manifest for H5 surface.
+- `agent.app.config.json`: application manifest for H5 surface.
 - `.sdkwork/`: local skills, plugins, manifests, and agent workspace metadata.
 - `specs/`: local contracts that narrow root standards.
 - `sdks/`: SDK families for this application surface.
@@ -39,7 +39,7 @@ This is the H5 application root for SDKWork Music. It follows `APP_H5_ARCHITECTU
 ## Spec Resolution Order
 
 1. Read this `AGENTS.md` and any nearer component-level `AGENTS.md`.
-2. Read `sdkwork.app.config.json` when present.
+2. Read `agent.app.config.json` when present.
 3. Read local `specs/README.md` and `specs/component.spec.json` when present.
 4. Read local `.sdkwork/README.md`, `.sdkwork/skills/`, and `.sdkwork/plugins/` when relevant.
 5. Read `../../sdkwork-specs/README.md` and the task-specific root specs.

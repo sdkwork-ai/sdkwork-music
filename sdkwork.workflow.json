@@ -6,7 +6,7 @@
     "name": "sdkwork-music",
     "repository": "sdkwork-ai/sdkwork-music",
     "sourcePath": ".",
-    "configPath": "sdkwork.app.config.json"
+    "configPath": "agent.app.config.json"
   },
   "release": {
     "artifactPrefix": "sdkwork-music",

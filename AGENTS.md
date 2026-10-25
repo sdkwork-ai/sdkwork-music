@@ -20,7 +20,7 @@ Do not copy root standard text into this repository. If these relative paths do 
 
 ## Application Identity
 
-No `sdkwork.app.config.json` is present at this root. If the task changes application behavior, runtime config, SDK wiring, release metadata, or app-owned capabilities, first locate the nearest application root that has this manifest or add one according to the root specs.
+No `agent.app.config.json` is present at this root. If the task changes application behavior, runtime config, SDK wiring, release metadata, or app-owned capabilities, first locate the nearest application root that has this manifest or add one according to the root specs.
 
 ## Local Dictionary Structure
 
@@ -28,7 +28,7 @@ No `sdkwork.app.config.json` is present at this root. If the task changes applic
 - `CLAUDE.md`: Claude Code compatibility shim that points to `AGENTS.md` and must not duplicate rules.
 - `GEMINI.md`: Gemini CLI compatibility shim that points to `AGENTS.md` and must not duplicate rules.
 - `CODEX.md`: Codex compatibility shim that points to `AGENTS.md` and must not duplicate rules.
-- `sdkwork.app.config.json`: not present at root; each application root has its own manifest.
+- `agent.app.config.json`: not present at root; each application root has its own manifest.
 - `.sdkwork/`: local skills, plugins, manifests, and agent workspace metadata.
 - `specs/`: component specifications and local contracts.
 - `sdks/`: SDK families, OpenAPI authorities, route manifests, and generated SDK artifacts.
@@ -47,7 +47,7 @@ No `sdkwork.app.config.json` is present at this root. If the task changes applic
 ## Spec Resolution Order
 
 1. Read this `AGENTS.md` and any nearer component-level `AGENTS.md`.
-2. Read `sdkwork.app.config.json` when present.
+2. Read `agent.app.config.json` when present.
 3. Read local `specs/README.md` and `specs/component.spec.json` when present.
 4. Read local `.sdkwork/README.md`, `.sdkwork/skills/`, and `.sdkwork/plugins/` when relevant.
 5. Read `../sdkwork-specs/README.md` and the task-specific root specs.
