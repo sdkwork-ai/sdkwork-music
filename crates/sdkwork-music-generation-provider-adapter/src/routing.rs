@@ -10,9 +10,9 @@ pub struct MusicSdkRoute {
 
 pub fn resolve_music_sdk_route() -> MusicSdkRoute {
     MusicSdkRoute {
-        create_resource: "audio_suno",
+        create_resource: "music_suno",
         create_method: "create_v1_music_generation",
-        retrieve_resource: "audio_suno",
+        retrieve_resource: "music_suno",
         retrieve_method: "list_v1_music_generations",
     }
 }

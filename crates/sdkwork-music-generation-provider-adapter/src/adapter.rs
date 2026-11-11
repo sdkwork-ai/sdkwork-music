@@ -57,7 +57,7 @@ impl MusicGenerationProvider for MusicGenerationProviderAdapter {
         let request = build_music_generation_request(command)?;
         let response = self
             .client
-            .audio_suno()
+            .music_suno()
             .create_v1_music_generation(&request)
             .await
             .map_err(map_sdk_error)?;
@@ -82,7 +82,7 @@ impl MusicGenerationProvider for MusicGenerationProviderAdapter {
     ) -> MusicGenerationProviderResult<NormalizedMusicGenerationResult> {
         let response = self
             .client
-            .audio_suno()
+            .music_suno()
             .list_v1_music_generations(provider_task_id)
             .await
             .map_err(map_sdk_error)?;

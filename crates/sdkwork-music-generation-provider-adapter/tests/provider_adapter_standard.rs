@@ -24,7 +24,7 @@ fn command() -> MusicGenerationCommand {
 #[test]
 fn sdk_routes_are_owned_only_by_the_adapter() {
     let route = resolve_music_sdk_route();
-    assert_eq!(route.create_resource, "audio_suno");
+    assert_eq!(route.create_resource, "music_suno");
     assert_eq!(route.create_method, "create_v1_music_generation");
     assert_eq!(route.retrieve_method, "list_v1_music_generations");
     assert_eq!(
