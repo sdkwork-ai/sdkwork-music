@@ -54,7 +54,8 @@
     "_sdkwork:check": "pnpm run check:app-composition && pnpm run check:browser-build-scripts && pnpm run check:cors-standard",
     "_sdkwork:verify": "pnpm sdk:check && pnpm test:node && pnpm test:vitest && cargo test --workspace && pnpm run check:app-composition && pnpm check:cors-standard",
     "_sdkwork:clean": "cargo clean",
-    "_sdkwork:build": "cargo build --workspace --release && pnpm --dir apps/sdkwork-music-pc run build:prod && pnpm --dir apps/sdkwork-music-h5 build"
+    "_sdkwork:build": "cargo build --workspace --release && pnpm --dir apps/sdkwork-music-pc run build:prod && pnpm --dir apps/sdkwork-music-h5 build",
+    "check:release-access-token:require-anchor": "node ../sdkwork-specs/tools/check-release-access-token-env.mjs --root . --require-anchor"
   },
   "devDependencies": {
     "@sdkwork/core-pc-react": "workspace:*",
